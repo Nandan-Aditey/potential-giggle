@@ -1,0 +1,376 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+<!-- Hero -->
+  <header class="hero-fullscreen">
+    <div class="hero-overlay">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="line">ARGUS-2440:</span><br/>
+          <span class="line">Mitigating nitrate</span><br/>
+          <span class="line">leaching in soil</span><br/>
+          <span class="line">with engineered <em>Pseudomonas putida</em> KT2440</span>
+        </h1>
+      </div>
+      <div class="bacteria-mask" style="cursor: url(https://static.igem.wiki/teams/6006/wiki/magnifying-glass.webp) 16 16, auto;">
+        <img src="{{ url_for('static', filename='putidoa.gif') }}" alt="Bacteria" class="bacteria-image"/>
+      </div>
+    </div>
+  </header>
+
+
+  <!-- Problem Statement -->
+
+  <section class="problem-band" aria-labelledby="problem-heading">
+    <div class="problem-inner">
+      <h2 id="problem-heading">A Hidden Threat to Our Water: Nitrate Leaching</h2>
+      <p>
+        Nitrogen fertilizers are essential for modern agriculture, but up to 50% is lost as nitrate, washing away from roots and into water bodies. This contamination threatens ecosystems and human health, all while depleting nitrogen content from the soil.
+      </p>
+    </div>
+
+    <!-- Water Waves -->
+    <div class="water-animation">
+
+        <!-- Nitrate Molecules Floating -->
+        <div class="water-animation-svg">
+          <div id="nitrate-container" class="nitrate-container"></div>
+
+          <svg class="waves-svg" id="wave-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150">
+            <path id="wave-path-svg" fill="rgba(147, 212, 249, 0.5)" 
+                  d="M0,64 
+                    C240,100 480,10 720,64 
+                    S960,100 1200,64 
+                    S1440,10 1440,64 
+                    V100 H0 Z">
+            </path>
+          </svg>
+
+        </div>
+
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150">
+            <path id="wave-2" class="wave-path" fill="rgba(147, 212, 249, 0.5)" d="M0,64 C240,110 480,10 720,64 S960,110 1200,64 S1440,10 1440,64 V150 H0 Z"></path>
+        </svg>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150">
+            <path id="wave-1" class="wave-path" fill="rgba(190, 228, 249, 0.7)" d="M0,64 C240,10 480,110 720,64 S960,10 1200,64 S1440,110 1440,64 V150 H0 Z"></path>
+        </svg>
+    </div>
+  </section>
+
+  <!-- Solution Overview -->
+
+  <!-- Temp Change -->
+
+
+  <!-- Statistics with animated dials -->
+
+  <section class="stats-section">
+      <h2></h2>
+      <div class="stats-grid">
+
+          <div class="stat-card fill-85">
+              <div class="stat-card-header">
+                  <h3><span class="counter" data-target="90">0</span>%</h3>
+              </div>
+              <p>lakes in Bangalore were sewage fed in 2009.</p>
+          </div>
+
+          <div class="stat-card fill-30">
+              <div class="stat-card-header">
+                  <h3><span class="counter" data-target="85">0</span>%</h3>
+              </div>
+              <p>of Bangalore's lakes are severely polluted.</p>
+          </div>
+
+          <div class="stat-card fill-70">
+              <div class="stat-card-header">
+                  <h3><span class="counter" data-target="20">0</span>%</h3>
+              </div>
+              <p>level of dissolved oxygen compared to recommended value.</p>
+          </div>
+
+      </div>
+  </section>
+
+  <!-- Nitrate levels animated bars -->
+<section id="nitrate-bars" style="max-width:800px;margin:50px auto;padding:20px;font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;">
+  <div style="background:#f8fafc;border-radius:16px;padding:28px;text-align:center;box-shadow:0 8px 24px rgba(15,23,42,0.06);">
+    <h2 style="font-size:1.5rem;font-weight:700;margin-bottom:24px;color:#0f172a;">
+      Nitrate Concentration in Groundwater (mg/L)
+    </h2>
+
+    <!-- Average (India) Bar -->
+    <div style="margin-bottom:20px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+        <div style="font-weight:600;color:#991b1b;">Average (India)</div>
+        <div id="avg-label" style="font-weight:700;color:#991b1b;">0 mg/L</div>
+      </div>
+      <div style="height:20px;background:#e5e7eb;border-radius:10px;overflow:hidden;">
+        <div id="avg-bar" style="
+          height:100%;
+          width:0%;
+          background:#dc2626;
+          border-radius:10px;
+          transition:width 1800ms cubic-bezier(.2,.9,.2,1);
+        "></div>
+      </div>
+    </div>
+
+    <!-- Permissible Limit Bar -->
+    <div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;">
+        <div style="font-weight:600;color:#166534;">Permissible Limit</div>
+        <div id="limit-label" style="font-weight:700;color:#166534;">0 mg/L</div>
+      </div>
+      <div style="height:20px;background:#e5e7eb;border-radius:10px;overflow:hidden;">
+        <div id="limit-bar" style="
+          height:100%;
+          width:0%;
+          background:#16a34a;
+          border-radius:10px;
+          transition:width 1400ms cubic-bezier(.2,.9,.2,1);
+        "></div>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  <section class="stats-section">
+  <h2>Murky Waters In The City Of Lakes</h2>
+  <p>
+    Bangalore has seen extensive eutrophication – i.e., the growth of uncontrolled cyanobacterial algal blooms on the surface of its lakes, for many years now. These toxin-producing species create anoxic dead zones, limit oxygen and light penetration, and make the freshwater source unfit for use.
+  </p>
+
+  <p>
+    A 2016 report by <span class="inline-highlight">Dr T V Ramachandra</span> from the Centre for Ecological Sciences (CES) at  IISc describes the dire state of Sankey Tank, a water body right beside campus. He attributes the lake’s heavy eutrophication to excessive nutrient and organic inputs from anthropogenic activities.
+  </p>
+  </section>
+
+  <section class="quote-section">
+    <div class="quote-container">
+      <div class="quote-text">
+        <p>
+          "<em>In Bangalore, 90% of eutrophication-causing nitrate is fed into lakes via sewage. This is not exactly the case in rural areas.</em>"
+        </p>
+        <p class="quote-author">
+          – Dr. T V Ramachandra, Scientific Officer, Centre of Ecological Sciences, IISc
+        </p>
+      </div>
+      <div class="quote-image">
+        <img src="https://static.igem.wiki/teams/6006/ihppictures/tvramachadnra.avif" alt="Dr T V Ramachandra">
+      </div>
+    </div>
+  </section>
+
+    <figure class="image-with-caption">
+      <img src="https://static.igem.wiki/teams/6006/wiki/hebbal-lake-eutrophication.webp" alt="Hebbal Lake Eutrophication" />
+        <figcaption>
+            Eutrophication in Hebbal Lake, Bengaluru, (2011-2020) showing extensive algal blooms caused by sewage runoff.
+        </figcaption>
+    </figure>
+
+  </section>
+
+  <section class="stats-section">
+  <h2 class="section-title-sword">A Double-Edged Sword</h2>
+  <p><b>So, what about the rest of India?</b></p>
+  <p>
+    To understand this, we spoke to <span class="inline-highlight">Dr Priyanka Jamwal</span>, senior researcher at ATREE (Ashoka Trust for Research in Ecology and the Environment). 
+  </p>
+  <p>
+    She revealed that the highest nitrate levels in groundwater are in rural areas, and are associated with prevalent fertilizer use. The problem went deeper than surface water pollution, with the nitrate invading groundwater and causing disease. Furthermore, environmental degradation was not the only major issue.
+  </p>
+  </section>
+
+  <section class="quote-section">
+    <div class="quote-container">
+      <div class="quote-text">
+        <p>
+          "<em>Farming-dependent villages suffer economic losses by having to use more fertilizers than necessary, as a large part of the nitrogen gets washed away and only a small quantity is absorbed by plants.</em>"
+        </p>
+        <p class="quote-author">
+          – Dr Priyanka Jamwal, senior researcher at ATREE
+        </p>
+      </div>
+      <div class="quote-image">
+        <img src="https://static.igem.wiki/teams/6006/ihppictures/priyanka-jamwal.avif" alt="Dr T V Ramachandra">
+      </div>
+    </div>
+  </section>
+
+  <section class="stats-section-second">
+      <h2></h2>
+      <div class="stats-grid-second">
+
+          <div class="stat-card-second fill-85">
+              <div class="stat-card-header-second">
+                  <h3><span class="counter-second" data-target="90">0</span>%</h3>
+              </div>
+              <p>of rural india relies on ground-water for drinking.</p>
+          </div>
+
+          <div class="stat-card-second fill-30">
+              <div class="stat-card-header-second">
+                  <h3><span class="counter-second" data-target="22">0</span>%</h3>
+              </div>
+              <p>higher risk of methemoglobinemia in children who drink water with high nitrate levels.</p>
+          </div>
+
+          <div class="stat-card-second fill-70">
+              <div class="stat-card-header-second">
+                  <h3><span class="counter-second" data-target="27">0</span>%</h3>
+              </div>
+              <p>of children in the Indo-Gangetic plains are at health risk due to nitrate exposure.</p>
+          </div>
+
+      </div>
+  </section>
+
+  <section class="stats-section">
+  <p>
+    To quantitatively analyze the state of nitrate leaching over the years, we plotted the nitrate levels in groundwater data collected by <span class="inline-highlight">Prof Sekhar Muddu</span> and his team of researchers at IISc from the wells in Berambadi village.
+  </p>
+  <figure class="image-with-caption">
+      <img src="https://static.igem.wiki/teams/6006/homepage/home-page-berambadi-graph.avif" alt="Hebbal Lake Eutrophication" />
+        <figcaption>
+            Concentration of nitrate in groundwater measured from wells in Berambadi, Karnataka.
+        </figcaption>
+    </figure>
+  <p>
+    With around 46% of the Indian population engaged in agriculture, and 47% of India’s landmass under cultivation, an immediate solution was paramount.
+  </p>
+  </section>
+      
+  <section id="visual-expl" class="visual-expl" aria-labelledby="solution-heading">
+    <div class="visual-grid">
+      <figure class="visual-left">
+      <iframe 
+          title="IISc-Bengaluru: ARGUS-2440: Tackling Nitrate Leaching at the Root (2025) - Project Promotion [English]" 
+          width="520" 
+          height="315" 
+          src="https://video.igem.org/videos/embed/j8LWaVwUENoTiAUPEzTsbT" 
+          allow="fullscreen" 
+          sandbox="allow-same-origin allow-scripts allow-popups allow-forms" 
+          style="border: 0px; margin-left: 80px;">
+      </iframe>
+    </figure>
+      <div class="visual-right">
+        <h2 id="solution-heading">A Comprehensive Solution to Nitrate Leaching</h2>
+        <h3>ARGUS-2440: Ammonium Rhizospheric Generation Using Soil Bacteria</h3>
+        <p>To engineer <em>Pseudomonas putida</em> KT2440, which forms beneficial biofilms around plant roots, to convert excess nitrates to ammonium in the soil. This allows it to:</p>
+        <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+        <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">
+          <span>Improve fertilizer efficiency and reduce usage.</span>
+        </li>
+        <li style="margin-bottom: -15px; list-style-position: outside; display: list-item;">
+          <span>Form a bacterial biofilm around roots and confer disease and drought resistance.</span>
+        </li>
+        <li style="margin-bottom: -15px; list-style-position: outside; display: list-item;">
+          <span>Treat irrigation runoff and reuse for fertilizer production.</span>
+        </li>
+      </ul>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="explore" aria-labelledby="explore-heading">
+    <h2 id="explore-heading">Dive Deeper into Our Project</h2>
+    <div class="explore-grid">
+      <a href="{{ url_for('pages', page='model') }}" class="card-link" aria-label="Explore our Human Practices Network">
+        <article>
+          <img src="https://static.igem.wiki/teams/6006/gallery/drylab.avif" alt="Stylized icon of a connected network" loading="lazy"/>
+          <div class="card-content">  
+            <h3>Modelling Efficiency</h3>
+            <p>Guiding wet lab research with predictions about the efficacy of our bacterium.</p>
+            <span class="card-cta">A Model Model</span>
+          </div>
+        </article>
+      </a>
+      <a href="{{ url_for('pages', page='pond') }}" class="card-link" aria-label="View our project's modeling">
+        <article>
+          <img src="https://static.igem.wiki/teams/6006/gallery/homepage/eutrophication.avif" alt="Animated icon showing data analysis" loading="lazy"/>
+          <div class="card-content">          
+          <h3>Visualising Eutrophication</h3>
+          <p>An interactive animation that demonstrates how we remedy excess nitrates. </p>
+          <span class="card-cta">Interact with our Animation</span>
+          </div>
+        </article>
+      </a>
+      <a href="{{ url_for('pages', page='integrated-human-practices') }}" class="card-link" aria-label="Browse our BioBrick parts">
+        <article>
+          <img src="https://static.igem.wiki/teams/6006/gallery/homepage/spweb.avif" alt="Icon of a DNA plasmid" loading="lazy"/>
+          <div class="card-content">
+          <h3>The IHP Spiderweb</h3>
+          <p>A useful methodology to guide comprehensive human practices efforts.</p>
+          <span class="card-cta">Spin the Web</span>
+          </div>
+        </article>
+      </a>
+      <a href="{{ url_for('pages', page='team') }}" class="card-link" aria-label="Read about our project safety">
+        <article>
+          <img src="https://static.igem.wiki/teams/6006/gallery/homepage/dsc-0481.avif" alt="Icon of a shield representing safety" loading="lazy"/>
+          <div class="card-content">
+          <h3>Team</h3>
+          <p>A dynamic group of lab rats, computer nerds and practising humans. </p>
+          <span class="card-cta">Meet the Team</span>
+          </div>
+        </article>
+      </a>
+      <a href="{{ url_for('pages', page='parts') }}" class="card-link" aria-label="Meet the team">
+        <article>
+          <img src="https://static.igem.wiki/teams/6006/gallery/biobricks.avif" alt="Icon representing a group of people" loading="lazy"/>
+          <div class="card-content">
+          <h3>Building Blocks</h3>
+          <p>An overview of the Biobricks we characterised and used to engineer our bacterium. </p>
+          <span class="card-cta">Explore Our Parts</span>
+          </div>
+        </article>
+      </a>
+      <a href="{{ url_for('pages', page='sustainability') }}" class="card-link" aria-label="See our sponsors">
+        <article>
+          <img src="https://static.igem.wiki/teams/6006/gallery/homepage/sustainm.avif" alt="Icon of hands shaking, representing partnership" loading="lazy"/>
+          <div class="card-content">
+          <h3>Targeting Sustainability</h3>
+          <p>A comprehensive overview of how our project lives up to the Sustainable Development Goals.</p>
+          <span class="card-cta">Not Just A Buzzword</span>
+          </div>
+        </article>
+      </a>
+    </div>
+  </section>                
+
+  <section class="references" aria-labelledby="references-heading">
+      <h2 id="references-heading">References</h2>
+      <ol>
+        <li>
+            Ramachandra, T V & Aithal, Dr. Bharath. (2016). "Decaying lakes of Bengaluru and today’s irrational decision makers". http://m.bfirst.in/news/2016_10_24/14766. 2016. 14766.  
+        </li>
+        <li>
+             Lake Health Index. https://www.bengalurusustainabilityforum.org/. 2024
+        </li>
+        <li>
+          Akinnawo, Solomon. “Eutrophication: Causes, Consequences, Physical, Chemical and Biological Techniques for Mitigation Strategies.” Environmental Challenges, vol. 12, no. 2667-0100, 1 May 2023, pp. 100733–100733, www.sciencedirect.com/science/article/pii/S2667010023000574.
+        </li>
+        <li>
+          Md. Moniruzzaman Monir, and Subaran Chandra Sarker. “Analyzing Post-2000 Groundwater Level and Rainfall Changes in Rajasthan, India, Using Well Observations and GRACE Data.” Heliyon, vol. 10, no. 2, 1 Jan. 2024, pp. e24481–e24481, https://doi.org/10.1016/j.heliyon.2024.e24481.
+        </li>
+        <li>
+          Ward, Mary H et al. “Drinking Water Nitrate and Human Health: An Updated Review.” International journal of environmental research and public health vol. 15,7 1557. 23 Jul. 2018, https://doi.org/10.3390/ijerph15071557.
+        </li>
+      </ol>
+  </section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='home.js') }}"></script>
+{% endblock %}

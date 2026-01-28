@@ -1,0 +1,267 @@
+{% extends "layout.html" %}
+
+{% block title %}Alphafold{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='experimentation.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+
+<div class="docs-layout">
+    <aside class="docs-sidebar">
+        <nav id="docs-nav" class="w-full"></nav>
+    </aside>
+
+    <main class="lg:pl-8">
+        <article>
+            <header id="top">
+                <h1>In Silico Validation of a Modified nirBD Protein Construct Using AlphaFold2</h1>
+                <p class="lead"></p>
+            </header>
+
+            <section id="introduction" data-aos="fade-up">
+                <h2>Introduction</h2>
+                <p>Our primary objective is to integrate <em>nirBD, nrfABCDEFG and nrfHAIJ</em> genes, which are responsible for nitrite reductase activity, into the genome of <em>P. putida</em> KT2440. However, due to the limitations on the availability of restriction sites, we end up with an unintended extra sequence of genetic code being carried over into the translated protein.</p>
+                <p>This can be a potential risk as this extraneous DNA sequence, when translated to amino acids can alter the folding and structure of the resulting protein in significant ways, thereby hampering the functioning of the protein.</p>
+                <p>Therefore, before investing our resources in performing the experiment in wet-lab, decided to have a prediction on how this modified protein would compare, at least structurally, to its native counterpart.</p>
+                <p>For this purpose, we used AlphaFold2, a deep learning model by Google’s DeepMind, which can predict the 3D structure of a protein from its amino acid sequence.</p>
+            </section>
+
+            <section id="methodology" data-aos="fade-up">
+                <h2>Methodology</h2>
+                <p>Our workflow can be divided into three stages:</p>
+                
+                <h3 id="sequence-preparation">Step 1: Sequence Preparation and Translation</h3>
+                <p>We obtained the sequence for the three operons as follows:</p>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;"><em>nirBD</em>: <em>Pseudomonas putida</em> KT2440</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;"><em>nrfHAIJ</em> : <em>Wolinella succinogenes</em> DSM 1740</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;"><em>nrfABCDEFG</em> : ,<em>Escherichia coli</em> K-12</li>
+                </ul>
+                <p>We used an interface to optimize the sequence for expression in <em>E. coli</em>.
+                <p>We tested these constructs on Snapgene to validate the translation.</p>
+                <p>Restriction sites were to be added at the ends to allow insertion into plasmids from the pSEVA backbone.</p>
+                <p>Two options were available for the first restriction site, EcoRI and AvrII.</p>
+                <p>Using either of the sites would mean some extra nucleotides would be present between the start codon on the plasmid and the inserted sequence.</p>
+                <p>On translation, this would mean a few extra amino acids, and we wanted to understand how this would affect the protein folding and in effect, the enzymatic activity of the protein.</p>
+
+                <h3 id="structure-prediction">Step 2: Protein Structure Prediction</h3>
+                <p>Prediction of the folded structure was the most computationally intensive part of this project.
+                The AlphaFold2 prediction process works by generating a Multi Sequence Alignment (MSA) from a huge 2.5TB dataset to identify patterns in protein structure.
+                This process is followed by a GPU intensive process of rendering the coordinates of each particle in 3D space.</p>
+                <p>Running the whole process locally is not very practical, so we tried out two different approaches:</p>
+                <p><b>1. ColabFold:</b> An Open-source project which integrates AlphaFold2 with Google Colab, Google’s cloud computing service.</p>
+                <p>While it may work for short amino acid chains, for our project the hardware limitations of free tier, 12GB RAM and weekly usage limit, would have been a huge bottleneck.</p>
+                <p><b>2. LocalColabFold:</b> This option is what we went ahead with. What separates it from the previous option is that while the neural network for structure prediction runs on the local hardware, the MSA generation step before prediction step is outsourced to a public server.</p>
+                <p>This significantly reduces local storage and computational requirements.
+                We ran our predictions on high performance systems in our Under Graduate Computer Laboratory (UGCL).
+                The entire setup and modelling process took around 9-10 hours.</p>
+
+                <h3 id="structural-comparison">Step-3: Structural comparison and Analysis</h3>
+                <p>The trials ranked according to their pLDDT scores (measure of how confident the neural network is of the structure of the predicted protein) are given as output in form of .pdb files along with special confidence plots.</p>
+                <div class="image-credit-wrapper">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/drylabmodelling/image5.webp" alt="PAE Plots" />
+                    <p class="image-credit">Predicted Aligned Error (PAE) plots of <em>nirB</em> Native protein. Plot shows the confidence of the model in the relative position of an amino acid compared to another. Blue → high certainty, Red → low certainty.</p>
+                </div>
+                
+                <p>The ranks are decided by pLDDT (predicted Local Distance Difference Test), which is another measure for confidence of the model for the special coordinates of the parts of protein.</p>
+                <p>For nirB native, the rank wise pLDDT values were: 92, 90.8, 90.3, 90.1 and 89.5.</p>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">pLDDT >90 indicates very high confidence in the structure</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">70 &lt; pLDDT &lt; 90 indicates confident</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">50 &lt; pLDDT &lt; 70 low confidence</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">And &lt; 50 indicates very low confidence.</li>
+                </ul>
+                <p>As one can observe, all the predictions are in the Very High to High confidence region.
+                Now, these predicted structures for our native proteins are compared to the modified versions.</p>
+                <p>There are multiple ways to do this, we chose to use RMSD and TM-score:</p>
+                <p><b>Root Mean Square Deviation (RMSD):</b> Measures the average distance between corresponding atoms of two superimposed structures. A lower RMSD value indicates greater similarity.</p>
+                <p><b>TM-score:</b> A metric of structural similarity on a scale of [0, 1], where 1 indicates a perfect match. A score > 0.5 signifies that the two proteins share the same global fold.</p>
+            </section>
+
+            <div class="callout callout-note">
+                Native and/or Rank-1 Proteins are taken as reference in all measurements, as indicated by 0 RMSD and TM Score of 1.
+            </div>
+
+            <br>
+
+            <table class="custom-table">
+                <caption>pLDDT Scores</caption>
+                <thead>
+                    <tr>
+                    <th>Protein</th>
+                    <th>Rank 1</th>
+                    <th>Rank 2</th>
+                    <th>Rank 3</th>
+                    <th>Rank 4</th>
+                    <th>Rank 5</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>nirB_av</td><td>91.8</td><td>90.7</td><td>90.1</td><td>89.9</td><td>89.1</td></tr>
+                    <tr><td>nirB_ec</td><td>91.1</td><td>90.1</td><td>89.7</td><td>89.5</td><td>88.4</td></tr>
+                    <tr><td>nirB_nat</td><td>92.0</td><td>90.8</td><td>90.3</td><td>90.1</td><td>89.5</td></tr>
+                    <tr><td>nrfA_av</td><td>92.2</td><td>92.1</td><td>92.1</td><td>92.0</td><td>91.9</td></tr>
+                    <tr><td>nrfA_ec</td><td>91.4</td><td>91.3</td><td>91.3</td><td>91.2</td><td>91.0</td></tr>
+                    <tr><td>nrfA_nat</td><td>92.7</td><td>92.6</td><td>92.6</td><td>92.6</td><td>92.2</td></tr>
+                    <tr><td>nrfH_av</td><td>84.6</td><td>83.5</td><td>83.1</td><td>82.1</td><td>81.9</td></tr>
+                    <tr><td>nrfH_ec</td><td>85.1</td><td>82.8</td><td>82.2</td><td>82.2</td><td>81.8</td></tr>
+                    <tr><td>nrfH_nat</td><td>85.9</td><td>84.7</td><td>84.4</td><td>83.2</td><td>82.3</td></tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <table class="custom-table">
+                <caption>TM Score (Rank-1)</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Native</th>
+                    <th>EcoRI</th>
+                    <th>AvrII</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>nrfA</td><td>1</td><td>0.96</td><td>0.95</td></tr>
+                <tr><td>nirB</td><td>1</td><td>0.95</td><td>0.97</td></tr>
+                <tr><td>nrfH</td><td>1</td><td>0.86</td><td>0.85</td></tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <table class="custom-table">
+                <caption>TM Score (Rank-2)</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Native</th>
+                    <th>EcoRI</th>
+                    <th>AvrII</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>nrfA</td><td>1</td><td>0.95</td><td>0.97</td></tr>
+                <tr><td>nirB</td><td>1</td><td>0.81</td><td>0.84</td></tr>
+                <tr><td>nrfH</td><td>1</td><td>0.86</td><td>0.85</td></tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <table class="custom-table">
+                <caption>TM Score (Rank-3)</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Native</th>
+                    <th>EcoRI</th>
+                    <th>AvrII</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>nrfA</td><td>1</td><td>0.94</td><td>0.95</td></tr>
+                <tr><td>nirB</td><td>1</td><td>0.53</td><td>0.53</td></tr>
+                <tr><td>nrfH</td><td>1</td><td>0.90</td><td>0.90</td></tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <table class="custom-table">
+                <caption>RMSD (Å) Rank-1</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Native</th>
+                    <th>EcoRI</th>
+                    <th>AvrII</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>nrfA</td><td>0</td><td>2.32</td><td>1.33</td></tr>
+                <tr><td>nirB</td><td>0</td><td>2.32</td><td>1.80</td></tr>
+                <tr><td>nrfH</td><td>0</td><td>2.07</td><td>2.12</td></tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <table class="custom-table">
+                <caption>RMSD (Å) Rank-2</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Native</th>
+                    <th>EcoRI</th>
+                    <th>AvrII</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>nrfA</td><td>0</td><td>2.06</td><td>1.78</td></tr>
+                <tr><td>nirB</td><td>0</td><td>5.04</td><td>4.42</td></tr>
+                <tr><td>nrfH</td><td>0</td><td>2.45</td><td>2.67</td></tr>
+                </tbody>
+            </table>
+
+            <br>
+
+            <table class="custom-table">
+                <caption>RMSD (Å) Rank-3</caption>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Native</th>
+                    <th>EcoRI</th>
+                    <th>AvrII</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr><td>nrfA</td><td>0</td><td>1.53</td><td>1.64</td></tr>
+                <tr><td>nirB</td><td>0</td><td>4.06</td><td>4.02</td></tr>
+                <tr><td>nrfH</td><td>0</td><td>1.71</td><td>1.73</td></tr>
+                </tbody>
+            </table>
+
+            <br>
+            
+            <p>The TM-Scores are above 0.90 for most structures of Rank-1, indicating an almost identical global fold.</p>
+                <p>RMSD values are well below 2.0 Å for most structures of Rank-1 as well, indicating minor local conformational changes mostly.</p>
+                <p>These are likely to be in the intrinsically disordered regions away from protein’s active site.</p>
+                
+                <div class="image-credit-wrapper">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/drylabmodelling/image9.webp" alt="nirB Native-AvrII-EcoRI overlayed" />
+                    <p class="image-credit">NirB Native-AvrII-EcoRI overlayed</p>
+                </div>
+                 <div class="image-credit-wrapper">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/drylabmodelling/image2.webp" alt="nrfA Native-AvrII-EcoRI overlayed" />
+                    <p class="image-credit">NrfA Native-AvrII-EcoRI overlayed</p>
+                </div>
+                 <div class="image-credit-wrapper">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/drylabmodelling/image4.webp" alt="nrfH Native-AvrII-EcoRI overlayed" />
+                    <p class="image-credit">NrfH Native-AvrII-EcoRI overlayed</p>
+                </div>
+            </section>
+
+            <section id="conclusion" data-aos="fade-up">
+                <h2>Conclusion</h2>
+                <p>The in silico modelling demonstrates that the extra amino acid sequence resulting from our cloning strategy causes little to no change to the overall structure of the NirB, NrfA and NrfH proteins.
+               The high degree of structural homology between native and modified protein models gives us confidence that our engineered protein model will work as intended according to its biological function.
+               These results serve as a crucial validation step in justifying our progression to the wet lab for experimental characterization.</p>
+                <p>Based on these results we moved ahead with using EcoRI as our restriction site, since the enzyme is well characterized and commonly used for digestion, despite having a few extra amino acids compared to AvrII.</p>
+            </section>
+        </article>
+    </main>
+</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='alphafold.js') }}"></script>
+<script src="{{ url_for('static', filename='aos.js') }}"></script>
+{% endblock %}

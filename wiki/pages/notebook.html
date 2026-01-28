@@ -1,0 +1,370 @@
+{% extends "layout.html" %}
+
+{% block title %}Notebook{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='notebook.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+<div id="notebook-component">
+
+<header class="nb-hero-header">
+    <h1>Lab Notebook</h1>
+    <p>A chronological record of our team's experiments, results, and discoveries throughout the iGEM season.</p>
+</header>
+
+<div class="nb-container nb-notebook-container">
+
+    <!-- April 2025 -->
+    <div class="nb-month-item">
+        <button class="nb-month-header">
+            <span>April 2025</span>
+            <div class="nb-accordion-icon"></div>
+        </button>
+        <div class="nb-month-content">
+            <div class="nb-week-container">
+                <div class="nb-week-item">
+                    <button class="nb-week-header">
+                        <div><span>Week 1 & 2:</span> 17 April - 30 April</div>
+                        <div class="nb-accordion-icon"></div>
+                    </button>
+                    <div class="nb-week-content">
+                        <div class="nb-week-content-inner">
+                            <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We familiarised ourselves with the SnapGene software since we would use it to optimize and understand the translation of these genes.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We studied the components of the plasmids we planned to use and considered the restriction sites we could use, choices of operons, and inducer promoter options.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We also planned soil experiments to test soil samples for nitrate, nitrite, and ammonium levels in a lab.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- May 2025 -->
+    <div class="nb-month-item">
+        <button class="nb-month-header">
+            <span>May 2025</span>
+            <div class="nb-accordion-icon"></div>
+        </button>
+        <div class="nb-month-content">
+            <div class="nb-week-container">
+                <div class="nb-week-item">
+                    <button class="nb-week-header">
+                        <div><span>Week 3 & 4:</span> 1 May - 14 May</div>
+                        <div class="nb-accordion-icon"></div>
+                    </button>
+                    <div class="nb-week-content">
+                        <div class="nb-week-content-inner">
+                            <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We finalized the restriction sites to be used on the pSEVA248 with input from dry lab data, and planned the workflow for Wetlab.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We received a stab of pSEVA248 in <em>E. coli</em> from the SEVA Repository; however, streaking did not result in any growth.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We worked on ordering the pSEVA248 plasmid from the SEVA Repository using a different channel to ensure that it could be cultured.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Started modifying our chosen operons to fit the restriction sites on the pSEVA248, using SnapGene.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nb-week-item">
+                    <button class="nb-week-header">
+                        <div><span>Week 4 & 5:</span> 15 May - 28 May</div>
+                        <div class="nb-accordion-icon"></div>
+                    </button>
+                    <div class="nb-week-content">
+                        <div class="nb-week-content-inner">
+                            <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We underwent thorough training on basic laboratory safety, as well as common techniques and the use of lab equipment.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Prepared stocks of broths, agar plates, and antibiotics.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We decided the <em>E. coli</em> strains we would use as a chassis, along with <em>P. putida</em>, based on availability in our PI's lab.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We contacted Phale Lab in IITB to obtain the <em>P. putida</em> KT2440 strain.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nb-week-item">
+                    <button class="nb-week-header">
+                        <div><span>Week 5 & 6:</span> 29 May - 11 June</div>
+                        <div class="nb-accordion-icon"></div>
+                    </button>
+                    <div class="nb-week-content">
+                        <div class="nb-week-content-inner">
+                            <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We received <em>P. putida</em> EM42 along with pSEVA 248 in <em>E. coli</em> from the SEVA Repository. Despite repeated attempts to culture the <em>E. coli</em>, we were unsuccessful.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We also received the <em>P. putida</em> KT2440 from Phale lab as an agar stab. Both <em>P. putida</em> KT2440 and <em>P. putida</em> EM42 stabs were placed in cold storage until we received approval for our check-in form.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nb-week-item">
+                    <button class="nb-week-header">
+                        <div><span>Week 7 & 8:</span> 12 June - 25 June</div>
+                        <div class="nb-accordion-icon"></div>
+                    </button>
+                    <div class="nb-week-content">
+                        <div class="nb-week-content-inner">
+                            <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Based on a preliminary comment on the safety form, we used the BSL-2 Facility in our lab to plate both strains.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Both cultures grew successfully, and primary and secondary glycerol stocks for the same were prepared.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Since there was an issue with our agar, the plates did not solidify properly, and we had to remake them.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Worked on Codon Optimisation for nitrite reductase genes to be ordered from TWIST Bioscience. Placed order for <em>nrfHAIJ, nrfABCDEFG</em> and <em>nirBD</em> operons. The former two were split into two parts to fit the 5kb synthesis limit.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Since we had failed to culture pSEVA248 from stabs, we considered getting the plasmid synthesized, as the inserts were tailored to the MCS of the SEVA backbone.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We found two colonies on the plate we made for the pSEVA248. We suspected it to be a contamination due to colony morphology and colour. We performed a Gram stain with extra precautions for a preliminary test. The colonies were in tetrads and were Gram-negative, indicating it was a contamination.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- June 2025 -->
+    <div class="nb-month-item">
+        <button class="nb-month-header">
+            <span>June 2025</span>
+            <div class="nb-accordion-icon"></div>
+        </button>
+        <div class="nb-month-content">
+            <div class="nb-week-container">
+
+                <div class="nb-week-item">
+                    <button class="nb-week-header">
+                        <div><span>Week 9 & 10:</span> 26 June - 9 July</div>
+                        <div class="nb-accordion-icon"></div>
+                    </button>
+                    <div class="nb-week-content">
+                        <div class="nb-week-content-inner">
+                            <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Our clonal genes were delayed at customs, but arrived in the second week of June. However, the second part of the <em>nrfHAIJ</em> operon could not be synthesised due to its complexity.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We received <em>nirBD, nrfABCD, nrfEFG,</em> and <em>nrfHA</em> as dried clonal DNA.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We still did not have a plasmid and were considering options on Addgene, since plasmid synthesis would be too time-consuming and a drain on limited financial resources.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Meanwhile, the SEVA team attempted to send the pSEVA248 plasmid to Phale Lab at IIT Bombay, where they would culture it and share it with us.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nb-week-item">
+                    <button class="nb-week-header">
+                        <div><span>Week 11 & 12:</span> 10 July - 23 July</div>
+                        <div class="nb-accordion-icon"></div>
+                    </button>
+                    <div class="nb-week-content">
+                        <div class="nb-week-content-inner">
+                            <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">While SEVA shipped the plasmids, we attempted to save any remaining plasmid from the agar stabs based on a suggestion from our PI. We eluted the agar and added lysis reagents, followed by a plasmid isolation protocol.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We attempted to transform this into <em>E. coli</em>. This failed, and we had to wait until Phale Lab sent us the plasmid.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We resuspended the dried clonal genes and transformed them into competent <em>E. coli</em> DH5-alpha successfully, for the <em>nrfABCD, nrfEFG</em> and <em>nirBD</em> operons. We did not transform <em>nrfHA</em> since the second part of the operon had not been synthesized.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Phale lab could not culture pSEVA248. However, they sent us other SEVA variants with different ORIs and resistances in <em>E. coli</em>. We received pSEVA238, pSEVA258, pSEVA268 and pSEVA2313.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We visited Berambadi Village and collected soil and water samples.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nb-week-item">
+                    <button class="nb-week-header">
+                        <div><span>Week 13:</span> 24 July - 30 July</div>
+                        <div class="nb-accordion-icon"></div>
+                    </button>
+                    <div class="nb-week-content">
+                        <div class="nb-week-content-inner">
+                            <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Our wet lab team was travelling, hence no lab work was possible.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">After travelling to Mumbai for the All India iGEM Meet, we travelled to Pune and collected soil and water samples from Talegaon Village.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Samples were collected in Eppendorf while wearing masks and gloves.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="nb-week-item">
+                    <button class="nb-week-header">
+                        <div><span>Week 13:</span> 31 July - 6 August</div>
+                        <div class="nb-accordion-icon"></div>
+                    </button>
+                    <div class="nb-week-content">
+                        <div class="nb-week-content-inner">
+                            <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We replated the <em>P. putida</em> strains, the <em>E. coli</em> containing clonal genes, and the <em>E. coli</em> containing plasmids.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Prepared glycerol stocks for all these.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Inoculated the plasmid containing <em>E. coli</em> in LB + Ampicillin overnight.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Isolated plasmid samples using the QIA Spin Miniprep Kit and quantified with a nanodrop.</li>
+                                <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">The quality of the isolate and yield was low, so we did not move ahead with digestion.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- August 2025 -->
+<div class="nb-month-item">
+    <button class="nb-month-header">
+        <span>August 2025</span>
+        <div class="nb-accordion-icon"></div>
+    </button>
+    <div class="nb-month-content">
+        <div class="nb-week-container">
+
+            <div class="nb-week-item">
+                <button class="nb-week-header">
+                    <div><span>Week 14:</span> 7 August - 14 August</div>
+                    <div class="nb-accordion-icon"></div>
+                </button>
+                <div class="nb-week-content">
+                    <div class="nb-week-content-inner">
+                        <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Performed the second set of inoculations. Attempted to grow culture in 50 mL Falcon tubes to increase yield.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Attempted manual digestion instead of the kit at the suggestion of our mentor, since it would give a better yield.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Digested pSEVA648 with EcoRI and BamHI. While isolation worked, the digestion did not.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nb-week-item">
+                <button class="nb-week-header">
+                    <div><span>Week 15:</span> 15 August - 21 August</div>
+                    <div class="nb-accordion-icon"></div>
+                </button>
+                <div class="nb-week-content">
+                    <div class="nb-week-content-inner">
+                        <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Since we faced issues with dual digestion, we tried to digest with only one restriction enzyme at a time. EcoRI did not work, BamHI was inconclusive, and HindIII seemed to have worked.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Replated the cultures since 2 weeks had passed.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Image: Marker, Undigested pSEVA648, pSEVA648+EcoRI, pSEVA648 + BamHI, pSEVA648+ HindIII</li>
+                            <img src="http://static.igem.wiki/teams/6006/wiki/undigested-ladder.webp" alt="Image: Marker, Undigested pSEVA648, pSEVA648+EcoRI, pSEVA648 + BamHI, pSEVA648+ HindIII" style="max-width: 60%; height: auto; margin-top: 10px;">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nb-week-item">
+                <button class="nb-week-header">
+                    <div><span>Week 16:</span> 22 August - 28 August</div>
+                    <div class="nb-accordion-icon"></div>
+                </button>
+                <div class="nb-week-content">
+                    <div class="nb-week-content-inner">
+                        <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">We tried another set of inoculations and digestions, this time with the pSEVA258 plasmid.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">The digestion had some impurities, but indicated that the MCS on the plasmid did not have an issue.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">The extended band was likely due to a longer incubation time, and we decided to reduce it in the next iteration.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nb-week-item">
+                <button class="nb-week-header">
+                    <div><span>Week 17:</span> 29 August - 4 September</div>
+                    <div class="nb-accordion-icon"></div>
+                </button>
+                <div class="nb-week-content">
+                    <div class="nb-week-content-inner">
+                        <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Designed different media proven to stimulate DNRA and prepared them to check for optimum <em>P. putida</em> growth.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">One more set of isolations and digestions. Elution was unsuccessful.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- September 2025 -->
+<div class="nb-month-item">
+    <button class="nb-month-header">
+        <span>September 2025</span>
+        <div class="nb-accordion-icon"></div>
+    </button>
+    <div class="nb-month-content">
+        <div class="nb-week-container">
+
+            <div class="nb-week-item">
+                <button class="nb-week-header">
+                    <div><span>Week 18:</span> 5 September - 11 September</div>
+                    <div class="nb-accordion-icon"></div>
+                </button>
+                <div class="nb-week-content">
+                    <div class="nb-week-content-inner">
+                        <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Got a good yield from isolation and gel, but elution failed and did not show any DNA.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Performed one more set of isolations and digestions. Elution was successful this time.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Attempted ligation - failed.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nb-week-item">
+                <button class="nb-week-header">
+                    <div><span>Week 19:</span> 12 September - 18 September</div>
+                    <div class="nb-accordion-icon"></div>
+                </button>
+                <div class="nb-week-content">
+                    <div class="nb-week-content-inner">
+                        <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Received the nitrite testing kit we had purchased.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Prepared a set of inoculants that did not give a good yield.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Obtained T4 DNA ligase and buffer, and moved testing to a lab closer to our classes so we could work longer hours.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nb-week-item">
+                <button class="nb-week-header">
+                    <div><span>Week 20:</span> Mid-September</div>
+                    <div class="nb-accordion-icon"></div>
+                </button>
+                <div class="nb-week-content">
+                    <div class="nb-week-content-inner">
+                        <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Due to mid-semester exams, we were not able to work in the lab during this time.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nb-week-item">
+                <button class="nb-week-header">
+                    <div><span>Week 21:</span> Late September</div>
+                    <div class="nb-accordion-icon"></div>
+                </button>
+                <div class="nb-week-content">
+                    <div class="nb-week-content-inner">
+                        <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0;">
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Tested for basal expression levels of nitrite reductase genes for <em>P. putida</em> KT2440 and <em>P. putida</em> EM42 in nitrate and nitrite medium.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Made a set of isolates, but they had low yield and were highly contaminated.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">A second set of inoculants showed moderate yield, but elution failed and showed erroneous values on the nanodrop.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Began testing soil samples in the Bagchi Lab for nitrate, nitrite, and ammonium levels.</li>
+                            <li style="margin-bottom: -15px; list-style-position: outside; display: list-item; margin-top: -10px">Performed basal biofilm formation assay for <em>P. putida</em> KT2440 and <em>P. putida</em> EM42.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}
+
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='notebook.js') }}"></script>
+{% endblock %}

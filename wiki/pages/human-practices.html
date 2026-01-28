@@ -1,0 +1,127 @@
+{% extends "layout.html" %}
+  
+{% block title %}Human Practices{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='drylab.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+<!-- Hero Section -->
+    <section id="intro" class="relative flex items-center justify-center">
+      <div class="absolute inset-0">
+        <img src="https://static.igem.wiki/teams/6006/wiki/hplanding/hp-bg.avif" class="w-full h-full object-cover"/>
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-800/70 via-green-900/60 to-black/60"></div>
+      </div>
+      <div class="relative text-center px-6">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">Welcome to Human Practices</h2>
+        <p class="mt-4 text-lg text-gray-200 max-w-2xl mx-auto">
+            Hands-on biology powering ARGUS-2440: experiments, breakthroughs, and discoveries.
+          </p>
+        <p class="mt-6 text-gray-100 max-w-3xl mx-auto leading-relaxed">
+            Our aim was to be as holistic as possible in our Human Practices endeavours. While our medal criteria were eventually chosen to be IHP and Sustainable Development Impact, we tried to cover all bases in order to fortify our work and make it comprehensive.
+        </p>
+      </div>
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2">
+          <div class="w-6 h-6 border-b-2 border-r-2 border-white transform rotate-45 animate-bounce opacity-75"></div>
+      </div>
+    </section>
+
+    <!-- Our Approach -->
+  <section class="max-w-6xl mx-auto px-6 py-24 space-y-16">
+    <h3 class="text-4xl font-bold bg-gradient-to-r from-green-600 to-purple-600 bg-clip-text text-transparent mb-12 text-center">
+      Our Approach
+    </h3>
+
+    <section class="timeline-section">
+      <p>
+        We conceptualized a spiderweb strategy while going about Human Practices. We asked every stakeholder we spoke to for references and contacts, based on the specific questions we had. Since we only had a basic understanding of the domain, we relied on the experts to direct us in the right direction.
+      </p>
+      <p>
+        As our work progressed, we realized how effective the spiderweb methodology had been. It also fit perfectly with the DBTL cycles, since questions we had while speaking to an expert were usually answerred by whoever they referred us to. Thus we were able to go about HP in a structured manner, as presented in the spiderweb diagram on our IHP page.
+      </p>
+    </section>
+
+    <!-- Integrated Practices -->
+    <div class="flex flex-col md:flex-row items-center gap-8">
+      <div class="flex-1">
+        <img src="https://static.igem.wiki/teams/6006/wiki/hplanding/whatsapp-image-2025-10-08-at-18-10-19-1.avif" class="rounded-2xl shadow-lg"/>
+      </div>
+      <div class="flex-1">
+        <h4 class="text-2xl font-bold text-green-700">Entrepreneurship</h4>
+        <p class="text-gray-600 leading-relaxed">
+         While our work is in a nascent stage, the problem of nitrate leaching is very real and demands urgency. Alongside our efforts to have a strong scientific backing, we sought to understand the demographic our work would be targeted towards. We came up with a rough business model that would be inclusive to all stakeholders, farmers, policymakers, industries and academics, while also mitigating nitrate leaching significanly. 
+        </p>
+        <p class="text-gray-600 leading-relaxed">
+        The model capitalizes on pre-existing distribution mechanisms to help our product reach a large number of farmers. However, our customer would be the government, who would purchase the product and provide it to farmers at subsidized rates or free of cost. Due to the expected increase in fertilzer efficiency, farmers would be benefitted and leaching would also reduce. Additionally, to involve the industry, we are working on a bioreactor system, wherein runoff water is also treated to modulate nitrate and ammonium levels. This water can be supplied to industries as per their requirement, effectively recycling a majority of the nitrogen content that would have otherwise entered water bodies.
+        </p>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+      <div class="flex-1">
+        <img src="https://static.igem.wiki/teams/6006/wiki/hplanding/img-3959.avif" class="rounded-2xl shadow-lg"/>
+      </div>
+      <div class="flex-1">
+        <h4 class="text-2xl font-bold text-purple-700">Education</h4>
+        <p class="text-gray-600 leading-relaxed">
+          Inspired by our seniors, who introduced us to iGEM and involved us in their cycle, we too urged our juniors to contribute to our project, in order to get a flavor of iGEM in the process. The first step was a comprehensive introduction about what iGEM is, and a breakdown of our project. We got a great response, with over 30 students showing up for the orientation.
+        </p>
+        <br>
+        <p class="text-gray-600 leading-relaxed">
+          Our juniors contributed to the Improvised GenBank software, which made the interface user friendly and added a few simple, but very useful functions that GenBank lacks. Before this, they were introduced to the fundamentals of Git and GitHub through an interactive session by Aditey, one of our dry lab team members.
+        </p>
+      </div>
+    </div>
+
+    <!-- Ethics & Safety -->
+    <div class="flex flex-col md:flex-row items-center gap-8">
+      <div class="flex-1">
+        <img src="https://static.igem.wiki/teams/6006/wiki/hplanding/whatsapp-image-2025-10-08-at-18-13-34.avif" class="rounded-2xl shadow-lg"/>
+      </div>
+      <div class="flex-1">
+        <h4 class="text-2xl font-bold text-green-700">Biosafety</h4>
+        <p class="text-gray-600 leading-relaxed">
+          One of the major issues we came across during our iGEM cycle was the lack of regulations about GMOs, especially microbes. To remedy this, we have prepared a comprehensive document that compiles exisiting GMO regulations. Additionally, we have proposed a novel framework for GMO classification, which will expedite the approval of GMO-based ideas in areas where urgent solutions are needed. 
+        </p>
+      </div>
+    </div>
+
+     <!-- Sustainable Development -->
+    <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+      <div class="flex-1">
+        <img src="https://static.igem.wiki/teams/6006/wiki/hplanding/whatsapp-image-2025-10-08-at-18-05-49.avif" class="rounded-2xl shadow-lg"/>
+      </div>
+      <div class="flex-1">
+        <h4 class="text-2xl font-bold text-purple-700">Sustainable Development Impact</h4>
+        <p class="text-gray-600 leading-relaxed">
+         Our project considered the SDG framework to analyse and tailor our plans every step of the way. Whenever experts posed pertinent questions, we looked at them through the lens of furthering the SDGs. We have thoroughly documented our learnings on the sustainable development impact page. 
+        </p>
+      </div>
+    </div>
+
+    <!-- Ethics & Safety -->
+    <div class="flex flex-col md:flex-row items-center gap-8">
+      <div class="flex-1">
+        <img src="https://static.igem.wiki/teams/6006/wiki/hplanding/whatsapp-image-2025-10-08-at-18-18-04.avif" class="rounded-2xl shadow-lg"/>
+      </div>
+      <div class="flex-1">
+        <h4 class="text-2xl font-bold text-green-700">Collaboration</h4>
+        <p class="text-gray-600 leading-relaxed">
+          One of our dry lab team members, Manya Gupta, is a student at the National University of Singapore.
+        </p>  
+        <p class="text-gray-600 leading-relaxed">
+         We contributed to multiple collaborations between iGEM Teams, such as a Not-To-Do List with iGEM UAM, a team from Brazil. We participated in an SDG Collaboration with iGEM VIT Vellore, where we spread awareness about how our project helps build a promising future for life under water. We also contributed to their multilingual podcast on the DBTL Cyle, in Marathi. The biggest collaboration was the All India iGEM Meet, where we interacted with iGEM Teams and ambassadors from all over India. This was a great way to learn, interact and grow in a community united by synthetic biology. 
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  
+
+  
+
+{% endblock %}

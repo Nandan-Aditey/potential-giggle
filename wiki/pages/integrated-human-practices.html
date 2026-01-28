@@ -1,0 +1,171 @@
+{% extends "layout.html" %}
+  
+{% block title %}Integrated Human Practices{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='ihp.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='hpblogs.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+
+
+<body class="bg-gray-50 text-gray-800">
+		<section class="max-w-3xl mx-auto text-center py-12 bg-transparent">
+			<h2 class="text-3xl font-bold mb-4">
+				Integrated Human Practices Network
+			</h2>
+			<p class="text-lg text-gray-700 leading-relaxed">
+				Scroll down to reach our interactive spiderweb, which shows how we connected with
+				<strong>farmers, scientists, policymakers, and communities</strong>
+				as part of our Integrated Human Practices (iHP) framework. Hover
+				over the nodes to see quick details, or click on them for longer
+				descriptions.
+			</p>
+		</section>
+
+		<div class="blogs-container">
+		<div class="blog-card" data-blog="blog_one">
+			<img src="https://static.igem.wiki/teams/6006/blogs/gt-putra.webp" alt="Blog Image">
+			<div class="post-tag">IHP</div>
+			<div class="blog-content">
+			<div class="blog-title">G.T. Puthra - Director of Agriculture</div>
+			<div class="blog-excerpt">Dr. G.T. Puthra provided insights on Karnataka’s fertilizer policies, government-farmer interactions, and GMO regulations, highlighting data-driven planning and regulatory oversight.</div>
+			<div class="blog-meta">By Mukta Khanolkar | May 20 2025</div>
+			</div>
+		</div>
+
+		<div class="blog-card" data-blog="blog_two">
+			<img src="https://static.igem.wiki/teams/6006/blogs/lavanya1.avif" alt="Blog Image">
+			<div class="post-tag">IHP</div>
+			<div class="blog-content">
+			<div class="blog-title">Dr. Lavanya Bhagavatula - Founder, Anvaya Biotech (All India iGEM Meet Judge)</div>
+			<div class="blog-excerpt">Dr. Lavanya Bhagavatula emphasized the need to classify GMOs properly, prepare educational and regulatory documents, and explore the “biostimulant” category to facilitate safe GMO use in agriculture.</div>
+			<div class="blog-meta">By Mukta Khanolkar | Jul 2025</div>
+			</div>
+		</div>
+
+		<div class="blog-card" data-blog="blog_three">
+			<img src="https://static.igem.wiki/teams/6006/blogs/mahendra-shahare.webp" alt="Blog Image">
+			<div class="post-tag">IHP</div>
+			<div class="blog-content">
+			<div class="blog-title">Dr. Mahendra Shahare </div>
+			<div class="blog-excerpt">Dr. Mahendra Shahare gave us key insights on how to conduct surveys, to communicate our questions well and also really inspired us to contemplate the context of our project.</div>
+			<div class="blog-meta">By Mukta Khanolkar | 10 Sep 2025</div>
+			</div>
+		</div>
+
+		<div class="blog-card" data-blog="blog_four">
+			<img src="https://static.igem.wiki/teams/6006/blogs/shekhar.avif" alt="Blog Image">
+			<div class="post-tag">IHP</div>
+			<div class="blog-content">
+			<div class="blog-title">Dr. Sekhar Muddu - Professor, Department of Civil Engineering, Indian Institute of Science</div>
+			<div class="blog-excerpt">Dr. Sekhar Muddu guided us on understanding groundwater contamination, informing us about the Berambadi critical centre from where we collected soil samples and spoke to farmers.</div>
+			<div class="blog-meta">By Mukta Khanolkar | 7 Jul 2025</div>
+			</div>
+		</div>
+
+		<div class="blog-card" data-blog="blog_five">
+			<img src="https://static.igem.wiki/teams/6006/blogs/shantamurthy.avif" alt="Blog Image">
+			<div class="post-tag">IHP</div>
+			<div class="blog-content">
+			<div class="blog-title">Shanthamurthy - Farmer, Berambadi Village</div>
+			<div class="blog-excerpt">Shanthamurthy, a contact provided by Prof Shekhar Muddu, took us to various locations around Berambadi, where we collected soil and water samples, and spoke to farmers. </div>
+			<div class="blog-meta">By Aarav Ghate | 10 Jun 2025</div>
+			</div>
+		</div>
+
+		<div class="blog-card" data-blog="blog_six">
+			<img src="https://static.igem.wiki/teams/6006/blogs/shyam.avif" alt="Blog Image">
+			<div class="post-tag">IHP</div>
+			<div class="blog-content">
+			<div class="blog-title">Shyam Sundar Agrawal - Director, Ministry of Chemicals and Fertilizers, Government of India</div>
+			<div class="blog-excerpt">Our meeting with Shyam was largely about distribution methods for fertilizers and the government’s perspective on GMOs.</div>
+			<div class="blog-meta">By Mukta Khanolkar | 16 May 2025</div>
+			</div>
+		</div>
+
+		<div class="blog-card" data-blog="blog_seven">
+			<img src="https://static.igem.wiki/teams/6006/blogs/priyanka-jamwal.webp" alt="Blog Image">
+			<div class="post-tag">IHP</div>
+			<div class="blog-content">
+			<div class="blog-title">Dr. Priyanka Jamwal - Programme Leader, Sr. Fellow - Water and Society, ATREE</div>
+			<div class="blog-excerpt">The meeting where we were told to touch grass! Dr. Priyanka told us our problem was much larger than surface water, and was significantly affecting rural communities through groundwater.</div>
+			<div class="blog-meta">By Mukta Khanolkar | 7 May 2025</div>
+			</div>
+		</div>
+
+		<div class="blog-card" data-blog="blog_eight">
+			<img src="https://static.igem.wiki/teams/6006/blogs/suchiradipta.webp" alt="Blog Image">
+			<div class="post-tag">IHP</div>
+			<div class="blog-content">
+			<div class="blog-title">Dr. Suchiradipta Bhattacharjee - Researcher, Water Policies and Governance, International Water Management Institute</div>
+			<div class="blog-excerpt">We got perspectives from someone at the interface of water management and soil health.</div>
+			<div class="blog-meta">By Mukta Khanolkar | 18 Sep 2025</div>
+			</div>
+		</div>
+
+		<div class="blog-card" data-blog="blog_nine">
+			<img src="https://static.igem.wiki/teams/6006/blogs/farmer-blog.avif" alt="Blog Image">
+			<div class="post-tag">IHP</div>
+			<div class="blog-content">
+			<div class="blog-title">Interviews From the Field Visit in Pune</div>
+			<div class="blog-excerpt">We spoke to farmers about water quality, fertilizer supply and their opinions about GMOs. </div>
+			<div class="blog-meta">By Aarav Ghate | 28 Jul 2025</div>
+			</div>
+		</div>
+
+		<div class="blog-card" data-blog="blog_ten">
+			<img src="https://static.igem.wiki/teams/6006/blogs/rahul-jog.webp" alt="Blog Image">
+			<div class="post-tag">IHP</div>
+			<div class="blog-content">
+			<div class="blog-title">A discussion about the state of GMO policy, and how it affects industry and potentially our project in the future. </div>
+			<div class="blog-excerpt">Dr. Rahul Jog - Head R&D, Bioprime AgriSolutions</div>
+			<div class="blog-meta">By Aarav Ghate | 11 Jun 2025</div>
+			</div>
+		</div>
+
+		</div>
+
+		<div id="canvas-container">
+			<canvas id="canvas" width="3000" height="3000"></canvas>
+			<div
+				id="tooltip"
+				style="
+					position: absolute;
+					display: none;
+					background: rgba(0, 0, 0, 0.85);
+					color: #fff;
+					padding: 6px 10px;
+					border-radius: 6px;
+					font-size: 13px;
+					pointer-events: none;
+					max-width: 220px;
+					z-index: 1000;
+				"
+			></div>
+		</div>
+
+<div id="person-modal" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 hidden">
+  <div class="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto p-6 relative">
+    <button id="close-modal" class="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-lg">&times;</button>
+    <h3 id="modal-title" class="text-xl font-bold mb-2"></h3>
+    <div id="modal-desc" class="text-gray-700 text-sm leading-relaxed"></div>
+  </div>
+</div>
+
+<!-- Blog Modal -->
+<div id="blog-modal" class="blog-modal">
+  <div class="blog-modal-content">
+    <span class="blog-modal-close">&times;</span>
+    <div id="blog-modal-body"></div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='ihp.js') }}"></script>
+<script src="{{ url_for('static', filename='hpblogs.js') }}"></script>
+{% endblock %}

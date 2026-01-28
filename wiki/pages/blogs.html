@@ -1,0 +1,105 @@
+{% extends "layout.html" %}
+
+{% block title %}Blogs{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='blogs.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+<!-- Page Header -->
+<header style="
+    text-align: center; 
+    padding: 60px 20px; 
+    /* background: linear-gradient(135deg, #00ab6b, #6a00ff); 
+    color: #fff;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    margin-bottom: 40px; */
+">
+    <h1 style="font-size: 3rem; margin: 0; font-family: 'Segoe UI', sans-serif; letter-spacing: 1px;">Blogs</h1>
+    <p style="margin-top: 10px; font-size: 1.2rem; opacity: 0.9;">
+        <br>Explore our latest insights, research updates, and team stories
+    </p>
+</header>
+
+<!-- Blog Cards -->
+<div class="blogs-container">
+
+  <div class="blog-card" data-blog="blog_four">
+    <img src="https://static.igem.wiki/teams/6006/gallery/blogs/ammonia.avif" alt="Blog Image">
+    <div class="post-tag">Ammonia Volatilization</div>
+    <div class="blog-content">
+      <div class="blog-title">Reducing Ammonia Volatilization: The Silent Killer</div>
+      <div class="blog-excerpt">Ways to reduce Ammonia Volatilization</div>
+      <div class="blog-meta">By Gautham Tathanda | Jun 2025</div>
+    </div>
+  </div>
+
+  <div class="blog-card" data-blog="blog_one">
+    <img src="https://static.igem.wiki/teams/6006/gallery/blogs/aarav.avif" alt="Blog Image">
+    <div class="post-tag">Science History</div>
+    <div class="blog-content">
+      <div class="blog-title">Tracing Connections in Science and Philately</div>
+      <div class="blog-excerpt">Ignoring the blatant bias of the statement, a far more noble pursuit would be using these stamps to understand the progression of science...</div>
+      <div class="blog-meta">By Aarav Ghate | Jul 2025</div>
+    </div>
+  </div>
+
+  <div class="blog-card" data-blog="blog_three">
+    <img src="https://static.igem.wiki/teams/6006/gallery/blogs/bacteria.avif" alt="Blog Image">
+    <div class="post-tag">Horizontal Gene Transfer</div>
+    <div class="blog-content">
+      <div class="blog-title">How bacteria get their superpowers</div>
+      <div class="blog-excerpt">Horizontal gene transfer as a driver of bacterial evolution</div>
+      <div class="blog-meta">By Durga Naniwadekar | Aug 2025</div>
+    </div>
+  </div>
+
+
+  <div class="blog-card" data-blog="blog_two">
+    <img src="https://static.igem.wiki/teams/6006/gallery/blogs/funding.avif" alt="Blog Image">
+    <div class="post-tag">iGEM Funding</div>
+    <div class="blog-content">
+      <div class="blog-title">How to <s>NOT</s> get iGEM Funding</div>
+      <div class="blog-excerpt">What we learnt in our struggle to get funding for our iGEM project</div>
+      <div class="blog-meta">By Aarav Ghate | Oct 2025</div>
+    </div>
+  </div>
+
+  <div class="blog-card" data-blog="blog_six">
+    <img src="https://static.igem.wiki/teams/6006/gallery/blogs/biostimulant.avif" alt="Blog Image">
+    <div class="post-tag">Biostimulants</div>
+    <div class="blog-content">
+      <div class="blog-title">Biostimulants: Like fertilizers, but better</div>
+      <div class="blog-excerpt">Why biostimulants are a sustainable alternative to modern day soil amendments</div>
+      <div class="blog-meta">By Chandana Valaboju | Oct 2025</div>
+    </div>
+  </div>
+
+  <div class="blog-card" data-blog="blog_five">
+    <img src="https://static.igem.wiki/teams/6006/gallery/blogs/blast-blog.avif" alt="Blog Image">
+    <div class="post-tag">BLAST</div>
+    <div class="blog-content">
+      <div class="blog-title">Identifying genes in newly discovered bacteria</div>
+      <div class="blog-excerpt">Using BLAST and amino acid sequences to predict proteins produced by bacteria</div>
+      <div class="blog-meta">By Gautham Tathanda | Oct 2025</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Blog Modal -->
+<div id="blog-modal" class="blog-modal">
+  <div class="blog-modal-content">
+    <span class="blog-modal-close">&times;</span>
+    <div id="blog-modal-body"></div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='blogs.js') }}"></script>
+{% endblock %}

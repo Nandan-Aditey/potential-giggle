@@ -1,0 +1,443 @@
+{% extends "layout.html" %}
+
+{% block title %}Public Perception{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='experimentation.css') }}">
+<style>
+
+    .highlight-box {
+        background: linear-gradient(135deg, #e8f5e9 0%, #f1f8f6 100%);
+        border-left: 5px solid #4caf50;
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .quote-box {
+        background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+        border-left: 5px solid #ff9800;
+        padding: 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+        font-style: italic;
+        color: #555;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .stat-box {
+        background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+        border-left: 5px solid #2196F3;
+        padding: 15px 20px;
+        margin: 20px 0;
+        border-radius: 5px;
+        font-weight: 600;
+        color: #1565c0;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .warning-box {
+        background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+        border-left: 5px solid #e91e63;
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .insight {
+        background: linear-gradient(135deg, #f3e5f5 0%, #ede7f6 100%);
+        border-left: 5px solid #9c27b0;
+        padding: 20px;
+        margin: 25px 0;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .insight strong {
+        color: #6a1b9a;
+    }
+
+    .docs-layout article figure {
+        text-align: center;
+        margin: 30px 0;
+    }
+
+    .docs-layout article img {
+        max-width: 100%;
+        height: auto;
+        max-height: 300px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        transition: transform 0.3s ease;
+        margin: auto;
+    }
+
+    .docs-layout article img:hover {
+        transform: scale(1.02);
+    }
+
+    .docs-layout article figcaption {
+        margin-top: 12px;
+        font-size: 0.95em;
+        color: #666;
+        font-style: italic;
+    }
+
+    .docs-layout article section {
+        margin-bottom: 60px;
+    }
+</style>
+{% endblock %}
+{% block page_content %}
+
+<div class="docs-layout">
+    <aside class="docs-sidebar">
+        <nav id="docs-nav" class="w-full"></nav>
+    </aside>
+
+    <main class="lg:pl-8">
+        <article>
+            <header id="top">
+                <h1>Perception of GMO use in Agriculture</h1>
+                <p class="lead">Understanding Public and Farmer Perspectives on Genetically Modified Organisms</p>
+            </header>
+
+            <section id="public-survey" data-aos="fade-up">
+                <h2>Surveying the Public</h2>
+
+                <p>
+                    ARGUS-2440 was shaped by continuous feedback from our stakeholders - farmers, industry experts, researchers, and government officials. Now, it was time to present our work to a wider demographic. A hallmark of good science communication is that the content is tailored to the audience. This begs the question: what pre-existing knowledge does the public possess about our project themes? It was time for our first survey.
+                </p>
+
+                <div class="highlight-box">
+                    <strong>Survey Overview:</strong> The survey collected 87 responses over four days. 93% of the survey participants are pursuing/have completed Bachelor's degrees. In fact, 38.4% are pursuing/have completed higher (postgraduate) education.
+                </div>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/p1.avif" alt="Level of education">
+                    <figcaption>Figure 1: Educational Background of Survey Participants</figcaption>
+                </figure>
+
+                <p>
+                    Around three-fourths of the participants believed, based on prior knowledge, that agricultural practices are unsustainable. This reflects the severity of the issue. While our project specifically deals with nitrate leaching, there are many more demons to be fought. The impact of unsustainable practices is amplified in India compared to other countries, since we are an agrarian nation.
+                </p>
+
+                <div class="stat-box">
+                    ✓ 72.1% of participants were aware of nitrate leaching<br>
+                    ✓ 67.4% aware of detriments of excess nitrates in drinking water
+                </div>
+
+                <p>
+                    Thus, there is decent awareness about our problem. This was great news for us.
+                </p>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/p2.avif" alt="Sustainability of agricultural practices">
+                    <figcaption>Figure 2: Views on Sustainability of Agricultural Practices</figcaption>
+                </figure>
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/p3.avif" alt="Nitrate leaching">
+                    <figcaption>Figure 3: Awareness of Nitrate Leaching</figcaption>
+                </figure>
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/p4.avif" alt="Impact of excess nitrates on health">
+                    <figcaption>Figure 4: Knowledge of Health Effects from Excess Nitrates</figcaption>
+                </figure>
+
+                <p>
+                    88.4% of participants knew what Genetically Modified Organisms (GMOs) are, and the rest were hopefully enlightened by a document that we attached. Now that everyone had at least a basic understanding of the term 'GMO', we could ask for their opinions on deploying them for agricultural uses. BT Brinjal and BT Cotton are quite famous, so the natural next question was about the participants' views on GM plants. <strong>Almost 90% of survey takers voted in their favor, although half of them believed that the crops that we consume should not be genetically modified.</strong>
+                </p>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/p5.avif" alt="Knowledge about GMOs">
+                    <figcaption>Figure 5: Knowledge About GMOs</figcaption>
+                </figure>
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/p6.avif" alt="Commercialization of GM crops">
+                    <figcaption>Figure 6: Views on Commercialization of GM Crops</figcaption>
+                </figure>
+
+                <p><strong>Why should one support GM crops?</strong></p>
+
+                <div class="quote-box">
+                    "Organisms are exposed to constitutive sources of mutations that alter their genome, often irreversibly, and these mostly go unnoticed while we consume them. So, on anthropologically modifying them, it just does not really change anything."
+                </div>
+
+                <div class="quote-box">
+                    "GM crops have been demonized unnecessarily. When tested and approved on a large scale for safety for both consumption/use and environmental impact, GM crops are actually very helpful. They are mostly seen in a negative light due to a campaign of fearmongering and also due to their unfortunate role in securing seed monopoly for US companies, who used this technology to copyright-protect literal seeds and their genetic design so no can grow them independently after buying them once. If those issues can be solved, I believe that GM crops can be a boon for many, especially vegetarians and vegans."
+                </div>
+
+                <div class="quote-box">
+                    "A technology should not be deemed bad solely by virtue of it being bioengineered and not found in nature. Even modern crops are technically only results of generations of primitive selective farming procedures by humans to cultivate better crops by selecting for traits advantageous for human consumption. Extrapolating this to the genetic level is not a huge leap, except if it is done on the basis of nefarious intentions by corporations (e.g., the allegations against Monsanto regarding the use of its pesticide-resistant seeds). It is entirely possible though that the early adoption cost might be high, but over the long run crops cultivated with such GM techniques might end up being more productive. Genetic modifications to plants can help increase the productivity of the land by producing greater yield and lesser waste by breeding for traits like increased caloric amount, better taste, resistance to disease, etc. It is simply a tool that can be utilized for good, and its harms lie more in how they are developed and distributed than in the scaremongering regarding adverse health effects."
+                </div>
+
+                <p><strong>Alternatively, why should one not support GM crops?</strong></p>
+
+                <div class="warning-box">
+                    <strong>Concerns raised:</strong><br>
+                    • Monoculture of genetically similar crops increases risk of diseases wiping out entire fields<br>
+                    • GMOs are produced in limited locations and not adapted to local climate and nutrient availability<br>
+                    • Control of seeds should be with farmers, not with foreign companies
+                </div>
+
+                <div class="quote-box">
+                    "While I do support GMOs, I don't think the current systems in India can prevent malpractices and corporate exploitation of this area. So I don't think we should be rolling out large-scale adoption of GMOs yet."
+                </div>
+
+                <div class="quote-box">
+                    "We are steadily losing everything that is natural and organic. Growing manufactured food and calling it natural, healthy and better is incorrect. In many ways it affects directly not just the quality of the food but also our health. Traditional method of farming, seeds that have survived the test of time and natural pest control methods are the way forward."
+                </div>
+
+                <div class="stat-box">
+                    ✓ 67.8% support using GMOs to aid crop growth<br>
+                    ✓ 26.4% open to considering the idea with more information
+                </div>
+
+                <p><strong>What's stopping them?</strong></p>
+
+                <div class="warning-box">
+                    <strong>Key Concerns:</strong><br>
+                    • Ecological consequences of releasing bacteria with new genes into soil communities<br>
+                    • Potential changes in soil conditions and effects on carbon cycling<br>
+                    • Ownership of bacteria and farmer autonomy in cultivation<br>
+                    • Lack of long-term risk information<br>
+                    • Understanding of GMO containment mechanisms
+                </div>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/p7.avif" alt="Non-GMO agricultural produce">
+                    <figcaption>Figure 7: Preference for Non-GMO Produce</figcaption>
+                </figure>
+
+                <div class="insight">
+                    <strong>Major Insight:</strong> Of the people who were not fully on board with the idea of GMO aids, <strong>96.8% said that they would change their answer if said aid enhanced sustainability or crop yield, or both.</strong> In fact, 65.8% of participants would even pay more for such a product, showing that the public is accepting of GMO use, given the certainty that it is safe.
+                </div>
+
+                <p>
+                    However, around half of the people believe that the price hike should not exceed 10%. This is understandable, since not everyone is economically positioned to take surging prices in stride. Produce must be affordable – both for the farmers (in terms of cultivation costs) as well as the consumers. Furthermore, 75.9% participants believe that increasing the price of GMO-aided produce is justified if it reduces health risks in rural communities, the main victims of nitrate leaching.
+                </p>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/p8.avif" alt="Beneficial soil GMOs">
+                    <figcaption>Figure 8: Acceptance of Beneficial Soil GMOs</figcaption>
+                </figure>
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/p9.avif" alt="Higher cost for sustainable produce">
+                    <figcaption>Figure 9: Willingness to Pay for Sustainable Produce</figcaption>
+                </figure>
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/p10.avif" alt="Percentage increase in pricing">
+                    <figcaption>Figure 10: Acceptable Price Increase Range</figcaption>
+                </figure>
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/p11.avif" alt="Justification of price hike">
+                    <figcaption>Figure 11: Support for Price Increases for Health Benefits</figcaption>
+                </figure>
+
+                <div class="highlight-box">
+                    <strong>Key Conclusion:</strong> Much of the wariness surrounding GMOs comes from a lack of information about their behaviour and impact. Should the organism be rigorously tested and proven safe for deployment, people will be more welcoming towards it. Of course, there are always concerns that such artificial selection is not 'natural' and that it may not gel well with pre-existing flora and fauna. However, mankind has always been tailoring its surroundings to favor its interests. The question is: are we wielding this power with safety, responsibility, and accountability?
+                </div>
+
+                <p>
+                    We closed the survey by inviting questions and criticism about our project. Thank you to everyone who took the time to fill out the survey! Your responses are valuable to us.
+                </p>
+            </section>
+
+            <section id="farmer-survey" data-aos="fade-up">
+                <h2>Surveying the Farmers</h2>
+
+                <p>
+                    Continuing our series of interactions with our primary stakeholders, we surveyed to answer the million-dollar question: Would they be willing to use our product? Now, GMO-based crop growth aids are at the far end of the spectrum of agricultural products that farmers may be open to trying – and not necessarily because of the novelty. Farmers do not have the luxury of simply trying new products, for they cannot afford any losses from the changes they need to make to accommodate the product.
+                </p>
+
+                <div class="highlight-box">
+                    <strong>Survey Design:</strong> We designed the questionnaire in Marathi and circulated it through Radhika Ghate and Utkarsh Ghate – relatives of our team lead, Aarav Ghate. The survey gathered 11 responses from farmers of various districts – Pune, Latur, Raigad, Sangli, Ranchi, and Uttar Pradesh. Participants grow a variety of crops with soybean and rice being the most popular, both requiring high amounts of nitrogen.
+                </div>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f1.avif" alt="Distribution of crop types">
+                    <figcaption>Figure 12: Crop Types Grown by Farmers</figcaption>
+                </figure>
+
+                <p>
+                    Next, we asked them about what kind of fertilizers they use. An overwhelming majority of the participants use Suriya and manure – organic fertilizers. This is a great sign as organic fertilizers are environmentally friendly and sustainable.
+                </p>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f2.avif" alt="Distribution of fertilizer types">
+                    <figcaption>Figure 13: Fertilizer Types Used by Farmers</figcaption>
+                </figure>
+
+                <div class="stat-box">
+                    ✓ 100% of farmers confirmed their fertilizers are effective and contain nitrogen<br>
+                    ✓ 63.6% have observed fertilizers washing away due to irrigation and rainfall
+                </div>
+
+                <div class="stat-box">
+                    ✓ 100% aware of negative effects of nitrate-leaching on water sources<br>
+                    ✓ 81.8% know of people/animals falling ill from consuming contaminated water
+                </div>
+
+                <p>
+                    This confirms that rural communities are heavily impacted by nitrate pollution.
+                </p>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f3.avif" alt="Fertilizer flushing">
+                    <figcaption>Figure 14: Observation of Fertilizer Flushing</figcaption>
+                </figure>
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f5.avif" alt="Impact of fertilizer leaching on health">
+                    <figcaption>Figure 15: Health Impact Awareness</figcaption>
+                </figure>
+
+                <div class="stat-box">
+                    ✓ 90.9% of participants take responsibility for environmental protection through agriculture
+                </div>
+
+                <div class="quote-box">
+                    "As farmers, it is our responsibility to ensure that our actions have no severe consequences."
+                </div>
+
+                <p>
+                    A proposed method of application of our bacterium is coating the seeds with the inoculum before sowing them. For farmers to accept this product, perhaps they can be given a few free samples. Since cost is a major factor, the seeds need to be cheaper than existing seeds or the same price.
+                </p>
+
+                <p><strong>Free Product - Environmental Benefit:</strong></p>
+
+                <div class="stat-box">
+                    ✓ 63.6% said they would try a free product that benefits the environment<br>
+                    ✗ 36.4% were hesitant, perhaps because it is new and doesn't benefit them directly
+                </div>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f6.avif" alt="Environmentally beneficial free product">
+                    <figcaption>Figure 16: Willingness to Try Free Eco-Friendly Products</figcaption>
+                </figure>
+
+                <p><strong>Purchasing Scenario - Environmental Benefit:</strong></p>
+
+                <p>
+                    As expected, fewer farmers said yes to purchasing the same product. Numbers also shifted from unsure to not very likely and not likely, since farmers often hire others to spray fertilizers and associated costs may rise.
+                </p>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f7.avif" alt="Purchasing environmentally beneficial product">
+                    <figcaption>Figure 17: Willingness to Purchase Eco-Friendly Products</figcaption>
+                </figure>
+
+                <p><strong>Seed-Coated Product - Pricing Scenarios:</strong></p>
+
+                <div class="insight">
+                    <strong>Important Finding:</strong> If it were a seed coating product, <strong>81.8% of people said they would be likely to try it out if it were cheaper than existing seeds.</strong> This provides valuable insight for us. A seed-coat model might work better than a spray model from a marketing perspective.
+                </div>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f8.avif" alt="Coated seeds cheaper than regular seeds">
+                    <figcaption>Figure 18: Adoption of Cheaper Coated Seeds</figcaption>
+                </figure>
+
+                <p>
+                    If the coated seeds were the same price as the seeds on the market right now, the distribution of responses changed to a roughly 50/50 split between maybe and maybe not.
+                </p>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f9.avif" alt="Coated seeds the same price as regular seeds">
+                    <figcaption>Figure 19: Adoption of Same-Price Coated Seeds</figcaption>
+                </figure>
+
+                <p><strong>Crop-Protective Product:</strong></p>
+
+                <div class="stat-box">
+                    ✓ 66.7% of farmers willing to try a product that protects crops and increases yield (free version)<br>
+                    ✗ 33.3% hesitant without elaborating on reasons
+                </div>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f10.avif" alt="Plant protecting free product">
+                    <figcaption>Figure 20: Interest in Crop-Protective Products</figcaption>
+                </figure>
+
+                <p>
+                    Following a similar pattern as before, the majority were unsure upon considering the possibility of purchasing the product.
+                </p>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f11.avif" alt="Purchasing plant protecting product">
+                    <figcaption>Figure 21: Purchase Intent for Crop-Protective Products</figcaption>
+                </figure>
+
+                <div class="stat-box">
+                    ✓ 72.8% participants likely to purchase coated seeds if cheaper than existing ones
+                </div>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f12.avif" alt="Coated seeds cheaper than regular seeds">
+                    <figcaption>Figure 22: Purchase Intent for Cheaper Crop-Protective Seeds</figcaption>
+                </figure>
+
+                <p>
+                    Next, if the coated seeds and regular seeds were of the same price, most participants would still consider them! This is a step up from the previous non-profitable variant, albeit the 'likely' responses are significantly more than the 'very likely' ones, indicating slight uncertainty.
+                </p>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f13.avif" alt="Coated seeds the same price as regular seeds">
+                    <figcaption>Figure 23: Purchase Intent for Same-Price Crop-Protective Seeds</figcaption>
+                </figure>
+
+                <p><strong>GMO Awareness and Perception:</strong></p>
+
+                <div class="stat-box">
+                    ℹ Only 1 farmer was aware of using GMOs in agriculture
+                </div>
+
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f14.avif" alt="Awareness regarding GMO use in agriculture">
+                    <figcaption>Figure 24: GMO Awareness Among Farmers</figcaption>
+                </figure>
+                <figure class="image-with-caption">
+                    <img src="https://static.igem.wiki/teams/6006/wiki/surveyspics/f15.avif" alt="Effect of the presence of GMOs on previous answers">
+                    <figcaption>Figure 25: GMO Status Impact on Purchasing Decisions</figcaption>
+                </figure>
+
+                <p>
+                    Farmers expressed that either their answers would not change even if the products from the previous questions contained GMOs, or that they cannot comment without possessing knowledge about them.
+                </p>
+
+                <p><strong>Farmer Insights on Adoption:</strong></p>
+
+                <div class="quote-box">
+                    "One will have to provide farmers with a lot of information regarding this."
+                </div>
+
+                <div class="quote-box">
+                    "Seeds prepared by research through Krushi Vigyan Kendras are faultless. They are good to use."
+                </div>
+
+                <div class="quote-box">
+                    "Farmers tend to favor old practices over new fertilizers and seeds. Manure is extremely beneficial for farmland."
+                </div>
+
+                <div class="quote-box">
+                    "Farmers try a new product once and purchase it for a second time if it is useful. If not, they look for other alternatives."
+                </div>
+
+                <div class="highlight-box">
+                    <strong>Final Conclusion:</strong> There is hope, but we have a long way to go. Perhaps with enough awareness and marketing, a GMO-based crop aid can break into the market. The key is demonstrating tangible benefits – whether through improved yields, reduced costs, or environmental protection – while building trust through transparent communication.
+                </div>
+
+            </section>
+
+        </article>
+        
+    </main>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='results.js') }}"></script>
+<script src="{{ url_for('static', filename='aos.js') }}"></script>
+{% endblock %}

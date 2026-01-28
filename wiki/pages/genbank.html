@@ -1,0 +1,243 @@
+{% extends "layout.html" %}
+
+{% block title %}GenBank-Improvised{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='genbank.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+    <div class="docs-layout">
+    <aside class="docs-sidebar">
+        <nav id="docs-nav" class="w-full"></nav>
+    </aside>
+
+    <main class="lg:pl-8">
+        <article>
+            <header id="top">
+                <h1>GenBank-Improvised</h1>
+                <p class="lead">An Enhanced Interface for NCBI GenBank</p>
+                <p><strong>Team:</strong> IGEM IISC 2025</p>
+                <p>
+                    <strong>Website:</strong> You can check out the tool <a href=" https://igem-iisc-2025.github.io/GenBank-Improvised/">here</a>.
+                </p>
+            </header>
+
+            <section id="overview" data-aos="fade-up">
+                <h2>Overview</h2>
+                <p>The GenBank-Improvised project aims to modernize and simplify interaction with NCBI's GenBank, addressing long-standing usability issues such as poor search accuracy, lack of context explanations, and weak visualization options.</p>
+                <p>Our tool integrates:</p>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">NCBI API access for robust backend querying</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Smart Search, a ranking-based, context-aware query engine</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Plasmid Visualization, a clean graphical interface to explore genetic constructs</li>
+                </ul>
+                <p>The result is a unified web portal that lowers the learning curve for new users while offering more power and clarity for researchers.</p>
+                <div class="callout callout-note">
+                    This project was led by Aditey Nandan, and involved various junior members of the iGEM-Juniors 2025 team. We ran the iGEM-Juniors team to give them a chance on working on a project in the first semester. They got introduced to various important interdisciplinary concepts, learnt new tools (GitHub, VSCode, etc.), documentation, software reproducibility, full stack web development and software engineering. Their support has been invaluable and this page helps document the progress they have made as part of the team.
+                </div>
+            </section>
+
+            <div class="image-credit-wrapper">
+                <img src="https://static.igem.wiki/teams/6006/joos/screenshot-2025-10-09-at-8-09-09-pm.avif" 
+                alt="Undigested DNA Ladder" 
+                class="animate-on-scroll" 
+                style="display: block; margin: 1rem auto 0; max-width: 600px; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+            </div>
+
+            <section id="problems" data-aos="fade-up">
+                <h2>2. Identified Problems in GenBank</h2>
+                <p>Through systematic exploration and feedback, we identified several shortcomings in the GenBank interface.</p>
+                
+                <h3 id="search-lottery">2.1 Search Lottery</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Queries for proteins often yield irrelevant results (e.g., "cas9" returns random strains).</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">No easy way to confirm the correct source organism.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Our fix: A Smart Search module that prioritizes well-annotated entries and model organisms.</li>
+                </ul>
+
+                <h3 id="missing-explanations">2.2 Missing Explanations</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Cryptic field labels (SNP, CDS, WGS) lack on-site guidance.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Users must rely on external resources for basic definitions.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Our fix: A dedicated Docs section explaining key terms.</li>
+                </ul>
+
+                <h3 id="blast-blind-spots">2.3 BLAST's Blind Spots</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">BLAST restricts searches to one database at a time (nr/nt, RefSeq, PDB).</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">No "search all" or automatic fallback across repositories.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Proposed fix: A Unified BLAST Interface that queries multiple databases seamlessly.</li>
+                </ul>
+
+                <h3 id="inflexible-comparison">2.4 Inflexible Genome Comparison</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">GenBank cannot directly compare annotated genomes or list common genes.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Proposed fix: A Comparative Genomics feature that aligns gene annotations from two genomes to identify overlaps and differences.</li>
+                </ul>
+
+                <h3 id="intra-file-search">2.5 No Intelligent Intra-File Search</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Users can't find specific genes within large sequences unless they know exact labels.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">"Ctrl+F" is often the only search method.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Proposed fix: A Context-aware Find function that matches synonyms, abbreviations, and functional terms (e.g., "nitrate reductase" finds "nirk").</li>
+                </ul>
+
+                <h3 id="visualization-limitations">2.6 Visualization Limitations</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">External tools like SnapGene offer visualization but with editing locked behind paywalls.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Our fix: An open, interactive plasmid viewer supporting annotation, editing, and sequence export for educational use.</li>
+                </ul>
+            </section>
+
+            <section id="system-architecture" data-aos="fade-up">
+                <h2>3. System Architecture</h2>
+                <p>The project consists of three interconnected components:</p>
+                <div class="table-wrapper">
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Component</th>
+                                <th>Description</th>
+                                <th>Members</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>NCBI API Layer</td>
+                                <td>Handles Entrez requests, parses results, caches data for efficiency, and serves structured JSON to the frontend.</td>
+                                <td>Thrayambakesh</td>
+                            </tr>
+                            <tr>
+                                <td>Smart Search Engine</td>
+                                <td>Ranks and filters results based on annotation quality, model organism relevance, and text similarity.</td>
+                                <td>Soham, Shivansh, Vedanta</td>
+                            </tr>
+                            <tr>
+                                <td>Plasmid Visualization Tool</td>
+                                <td>Uses interactive D3.js-based graphics to display circular or linear plasmid maps with feature hover details.</td>
+                                <td>Divyansh, Govind, Ryan</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p><strong>Workflow:</strong> User → Search query → Smart Search → NCBI API → Parsed Results → Visualization + Docs</p>
+            </section>
+
+            <section id="creation-timeline" data-aos="fade-up">
+                <h2>4. Creation Timeline</h2>
+                <h3 id="phase-1">Phase 1: Ideation</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Created a list of pre-existing bio-tech tools online.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Consulted bio-engineering enthusiasts and faculty about problems with these resources.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Brainstormed of possible solution implementations</li>
+                </ul>
+
+                <h3 id="phase-2">Phase 2: Prototyping</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Created a preliminary framework in Python</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Learned to bypass use of Bio-python</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Presentation to said-tool users for feedback</li>
+                </ul>
+
+                <h3 id="phase-3">Phase 3: Finalising</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Optimised and converted code into JS</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Built a github site to host our tool.</li>
+                </ul>
+            </section>
+
+            <div class="image-credit-wrapper">
+                    <img src="https://static.igem.wiki/teams/6006/joos/screenshot-2025-10-09-at-8-09-47-pm.avif" 
+                    alt="Undigested DNA Ladder" 
+                    class="animate-on-scroll" 
+                    caption="Improved, concise and combined documentation for GenBank"
+                    style="display: block; margin: 1rem auto 0; max-width: 600px; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                </div>
+            
+            <section id="key-features" data-aos="fade-up">
+                <h2>5. Key Features</h2>
+                <h3 id="smart-search">5.1 Smart Search</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Intelligent ranking and synonym recognition</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Autocomplete for organism and accession names</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Filters for genome length, organism, and record type</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Sorting by relevance, date, or completeness</li>
+                </ul>
+
+                <div class="image-credit-wrapper">
+                    <img src="https://static.igem.wiki/teams/6006/joos/screenshot-2025-10-09-at-8-10-34-pm.avif" 
+                    alt="Undigested DNA Ladder" 
+                    class="animate-on-scroll" 
+                    style="display: block; margin: 1rem auto 0; max-width: 600px; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                </div>
+        
+
+                <h3 id="plasmid-visualization">5.2 Plasmid Visualization</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Dynamic circular maps with zoom, hover, and labeling</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Color-coded feature tracks (CDS, promoter, regulatory sites, etc.)</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Optional export as SVG/PNG</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Editable feature names for experimental design or teaching use</li>
+                </ul>
+            </section>
+
+            <div class="image-credit-wrapper">
+                    <img src="https://static.igem.wiki/teams/6006/blogs/plasmid.avif" 
+                    alt="Undigested DNA Ladder" 
+                    class="animate-on-scroll" 
+                    style="display: block; margin: 1rem auto 0; max-width: 600px; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+                </div>
+
+            <section id="results-impact" data-aos="fade-up">
+                <h2>6. Results & Impact</h2>
+                <h3 id="usability-improvements" class="section-title-small">Usability improvements:</h3>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Queries are faster and more relevant.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Novice users can understand GenBank fields directly from the interface.</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Genome and plasmid data are visually interpretable at a glance.</li>
+                </ul>
+                <h3 id="educational-impact" class="section-title-small">Educational impact:</h3>
+                <p>The visualization module doubles as a teaching tool for genetic constructs.</p>
+                <p>Our platform bridges the gap between beginner biology students and the overwhelming GenBank interface by providing clarity, context, and interactivity.</p>
+            </section>
+
+            <section id="future-work" data-aos="fade-up">
+                <h2>7. Future Work</h2>
+                <ul class="benefits-list" style="list-style-type: disc; padding-left: 20px; margin: 0; font-size: 0.95rem;">
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Enable custom sequence uploads (FASTA/GenBank format)</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Integrate BLAST alignment and motif search directly</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Add plasmid editing and design functionality</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Extend visualization to display comparative studies between plasmids</li>
+                    <li style="margin-bottom: 6px; list-style-position: outside; display: list-item;">Create protein quaternary structure visualizations</li>
+                </ul>
+            </section>
+
+            <section id="conclusion" data-aos="fade-up">
+                <h2>8. Conclusion</h2>
+                <p>GenBank-Improvised enhances the accessibility and functionality of one of biology's most essential databases.</p>
+                <p>By addressing its usability gaps - from confusing jargon to missing visualization - our project demonstrates how thoughtful design and modern web tools can make genomic data exploration faster, friendlier, and more educational.</p>
+            </section>
+
+            <h2>The Team:</h2>
+
+            <div class="image-credit-wrapper">
+                <img src="https://static.igem.wiki/teams/6006/wiki/joos.webp" 
+                alt="Undigested DNA Ladder" 
+                class="animate-on-scroll" 
+                style="display: block; margin: 1rem auto 0; max-width: 600px; border-radius: 1rem; box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); margin-bottom: 2rem;">
+            </div>
+
+            <p>Thanks to Mayank Kumar Raj and Shrey Gupta for designing the logo of GenBank-Improvised.</p>
+
+        </article>
+    </main>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='genbank.js') }}"></script>
+<script src="{{ url_for('static', filename='aos.js') }}"></script>
+{% endblock %}

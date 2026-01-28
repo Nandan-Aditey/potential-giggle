@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+
+{% block title %}Human Practices{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='hp.css') }}">
+{% endblock %}
+
+{% block page_content %}
+
+<!-- Hero Section -->
+  <section class="relative h-[70vh] flex items-center justify-center text-center">
+    <img src="https://static.igem.wiki/teams/6006/wiki/hplanding/hp-bg.avif" 
+         class="absolute inset-0 w-full h-full object-cover"/>
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-800/70 via-green-900/60 to-black/60"></div>
+    <div class="relative z-10 max-w-3xl px-4">
+      <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">Human Practices</h2>
+      <p class="mt-4 text-lg text-gray-200">
+        Understanding the broader impact of ARGUS-2440: ethics, sustainability, and collaboration with society.
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Approach -->
+  <section class="max-w-6xl mx-auto px-6 py-24 space-y-16">
+    <h3 class="text-4xl font-bold bg-gradient-to-r from-green-600 to-purple-600 bg-clip-text text-transparent mb-12 text-center">
+      Our Approach
+    </h3>
+
+    <!-- Integrated Practices -->
+    <div class="flex flex-col md:flex-row items-center gap-8">
+      <div class="flex-1">
+        <img src="https://static.igem.wiki/teams/6006/wiki/igemlogo.webp" class="rounded-2xl shadow-lg"/>
+      </div>
+      <div class="flex-1">
+        <h4 class="text-2xl font-bold text-green-700">Integrated Practices</h4>
+        <p class="text-gray-600 leading-relaxed">
+          We continuously adapt our project through stakeholder engagement. Farmers, policy experts, and industry voices help refine our designs to ensure they solve real-world challenges.
+        </p>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="flex flex-col md:flex-row-reverse items-center gap-8">
+      <div class="flex-1">
+        <img src="https://static.igem.wiki/teams/6006/wiki/igemlogo.webp" class="rounded-2xl shadow-lg"/>
+      </div>
+      <div class="flex-1">
+        <h4 class="text-2xl font-bold text-purple-700">Education</h4>
+        <p class="text-gray-600 leading-relaxed">
+          Outreach and education are core to our work. From interactive workshops with students to public talks on synthetic biology, we strive to make science accessible and engaging.
+        </p>
+      </div>
+    </div>
+
+    <!-- Ethics & Safety -->
+    <div class="flex flex-col md:flex-row items-center gap-8">
+      <div class="flex-1">
+        <img src="https://static.igem.wiki/teams/6006/wiki/igemlogo.webp" class="rounded-2xl shadow-lg"/>
+      </div>
+      <div class="flex-1">
+        <h4 class="text-2xl font-bold text-green-700">Ethics & Safety</h4>
+        <p class="text-gray-600 leading-relaxed">
+          Responsible research means prioritizing safety and ethical considerations. We evaluate risks, ensure biosafety standards, and discuss the societal implications of our designs.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section class="py-24 bg-gradient-to-br from-purple-100 via-white to-green-50">
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h3 class="text-4xl font-bold bg-gradient-to-r from-green-600 to-purple-600 bg-clip-text text-transparent mb-6">Community Moments</h3>
+      <p class="text-gray-700 leading-relaxed">
+        Human Practices is about dialogue and collaboration. Our gallery captures our interactions with diverse groups: from farmers in the field to policymakers and students in classrooms.
+      </p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <img src="https://static.igem.wiki/teams/6006/wiki/igemlogo.webp" class="rounded-2xl shadow-md hover:scale-105 transition"/>
+      <img src="https://static.igem.wiki/teams/6006/wiki/igemlogo.webp" class="rounded-2xl shadow-md hover:scale-105 transition"/>
+      <img src="https://static.igem.wiki/teams/6006/wiki/igemlogo.webp" class="rounded-2xl shadow-md hover:scale-105 transition"/>
+    </div>
+  </section>
+  
+  {% endblock %}
