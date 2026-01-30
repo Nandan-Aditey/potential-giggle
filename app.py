@@ -54,14 +54,15 @@ def genbank_viewer():
     )
 
 
-@freezer.register_generator
-def frozen_pages():
+@freezer.register_generator("pages")
+def pages_generator():
     yield {"page": "dashboard"}
     yield {"page": "search"}
     yield {"page": "understand"}
     yield {"page": "visualise"}
     yield {"page": "research-map"}
     yield {"page": "about"}
+
 
 # Main Function, Runs at http://0.0.0.0:8081
 if __name__ == "__main__":
