@@ -38,8 +38,6 @@ def favicon():
 @app.route('/<page>')
 def pages(page):
     template = Path('pages') / f"{page.lower()}.html"
-    if not template.exists():
-        abort(404)
     return render_template(str(template))
 
 
@@ -53,15 +51,6 @@ def genbank_viewer():
         format=format
     )
 
-
-@freezer.register_generator("pages")
-def pages_generator():
-    yield {"page": "dashboard"}
-    yield {"page": "search"}
-    yield {"page": "understand"}
-    yield {"page": "visualise"}
-    yield {"page": "research-map"}
-    yield {"page": "about"}
 
 
 # Main Function, Runs at http://0.0.0.0:8081
