@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created by COPASI version 4.45 (Build 298) on 2025-10-08 02:10 with libSBML version 5.20.4. -->
+<sbml xmlns="http://www.sbml.org/sbml/level2/version4" level="2" version="4">
+  <model metaid="COPASI0" id="New_Model" name="New Model">
+    <annotation>
+      <copasi:COPASI xmlns:copasi="http://www.copasi.org/static/sbml">
+        <rdf:RDF xmlns:dcterms="http://purl.org/dc/terms/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+          <rdf:Description rdf:about="#COPASI0">
+            <dcterms:created>
+              <rdf:Description>
+                <dcterms:W3CDTF>2025-09-29T13:41:12Z</dcterms:W3CDTF>
+              </rdf:Description>
+            </dcterms:created>
+          </rdf:Description>
+        </rdf:RDF>
+      </copasi:COPASI>
+      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:vCard="http://www.w3.org/2001/vcard-rdf/3.0#" xmlns:bqbiol="http://biomodels.net/biology-qualifiers/" xmlns:bqmodel="http://biomodels.net/model-qualifiers/">
+        <rdf:Description rdf:about="#COPASI0">
+          <dcterms:created rdf:parseType="Resource">
+            <dcterms:W3CDTF>2025-09-29T13:41:12Z</dcterms:W3CDTF>
+          </dcterms:created>
+          <dcterms:modified rdf:parseType="Resource">
+            <dcterms:W3CDTF>2025-09-29T13:41:12Z</dcterms:W3CDTF>
+          </dcterms:modified>
+        </rdf:Description>
+      </rdf:RDF>
+    </annotation>
+    <listOfFunctionDefinitions>
+      <functionDefinition id="Constant_flux__irreversible" name="Constant flux (irreversible)">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> v </ci>
+            </bvar>
+            <ci> v </ci>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="Henri_Michaelis_Menten__irreversible" name="Henri-Michaelis-Menten (irreversible)">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> substrate </ci>
+            </bvar>
+            <bvar>
+              <ci> Km </ci>
+            </bvar>
+            <bvar>
+              <ci> V </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <times/>
+                <ci> V </ci>
+                <ci> substrate </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> Km </ci>
+                <ci> substrate </ci>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+      <functionDefinition id="exchange" name="exchange">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <lambda>
+            <bvar>
+              <ci> Tmf </ci>
+            </bvar>
+            <bvar>
+              <ci> vex </ci>
+            </bvar>
+            <bvar>
+              <ci> ktf </ci>
+            </bvar>
+            <bvar>
+              <ci> Tmr </ci>
+            </bvar>
+            <bvar>
+              <ci> vin </ci>
+            </bvar>
+            <bvar>
+              <ci> ktr </ci>
+            </bvar>
+            <bvar>
+              <ci> a </ci>
+            </bvar>
+            <bvar>
+              <ci> b </ci>
+            </bvar>
+            <apply>
+              <divide/>
+              <apply>
+                <minus/>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> Tmf </ci>
+                    <ci> a </ci>
+                    <ci> vex </ci>
+                  </apply>
+                  <ci> ktf </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> Tmr </ci>
+                    <ci> b </ci>
+                    <ci> vin </ci>
+                  </apply>
+                  <ci> ktr </ci>
+                </apply>
+              </apply>
+              <apply>
+                <plus/>
+                <cn> 1 </cn>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> vex </ci>
+                    <ci> a </ci>
+                  </apply>
+                  <ci> ktf </ci>
+                </apply>
+                <apply>
+                  <divide/>
+                  <apply>
+                    <times/>
+                    <ci> vin </ci>
+                    <ci> b </ci>
+                  </apply>
+                  <ci> ktr </ci>
+                </apply>
+              </apply>
+            </apply>
+          </lambda>
+        </math>
+      </functionDefinition>
+    </listOfFunctionDefinitions>
+    <listOfUnitDefinitions>
+      <unitDefinition id="unit_0" name="mol/l">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="litre" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="unit_1" name="s^-1">
+        <listOfUnits>
+          <unit kind="second" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="unit_2" name="mol/s">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="1"/>
+          <unit kind="second" exponent="-1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="substance" name="substance">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="length" name="length">
+        <listOfUnits>
+          <unit kind="metre" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="area" name="area">
+        <listOfUnits>
+          <unit kind="metre" exponent="2" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="volume" name="volume">
+        <listOfUnits>
+          <unit kind="litre" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="time" name="time">
+        <listOfUnits>
+          <unit kind="second" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+      <unitDefinition id="unit_3" name="mol">
+        <listOfUnits>
+          <unit kind="mole" exponent="1" scale="0" multiplier="1"/>
+        </listOfUnits>
+      </unitDefinition>
+    </listOfUnitDefinitions>
+    <listOfCompartments>
+      <compartment id="cell" name="cell" spatialDimensions="3" size="1e-09" constant="false"/>
+      <compartment id="ext" name="ext" spatialDimensions="3" size="0.125" constant="true"/>
+    </listOfCompartments>
+    <listOfSpecies>
+      <species id="no3_ex" name="no3_ex" compartment="ext" initialAmount="6.25e-05" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="no3_p" name="no3_p" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="no2_p" name="no2_p" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="nh4_p" name="nh4_p" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="nh4_ex" name="nh4_ex" compartment="ext" initialAmount="6.25e-05" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="nh4_a" name="nh4_a" compartment="cell" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="no2_ex" name="no2_ex" compartment="ext" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="no3_l" name="no3_l" compartment="ext" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="no3_u" name="no3_u" compartment="ext" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+      <species id="nh4_u" name="nh4_u" compartment="ext" initialAmount="0" hasOnlySubstanceUnits="true" boundaryCondition="false" constant="false"/>
+    </listOfSpecies>
+    <listOfParameters>
+      <parameter id="_E1" name="[E1]" value="1.67e-06" units="unit_0" constant="true"/>
+      <parameter id="_E2" name="[E2]" value="1.67e-06" units="unit_0" constant="true"/>
+      <parameter id="kcat1" name="kcat1" value="240" units="unit_1" constant="true"/>
+      <parameter id="kcat2" name="kcat2" value="1350" units="unit_1" constant="true"/>
+      <parameter id="km1" name="km1" value="0.0013" constant="true"/>
+      <parameter id="km2" name="km2" value="4.6e-05" units="unit_0" constant="true"/>
+      <parameter id="Vm1" name="Vm1" value="0.0004008" constant="false"/>
+      <parameter id="Vm2" name="Vm2" value="0.0022545" constant="false"/>
+      <parameter id="tmf_nh4" name="tmf_nh4" value="6.5e-09" units="unit_2" constant="true"/>
+      <parameter id="tmr_nh4" name="tmr_nh4" value="2.67e-10" units="unit_2" constant="true"/>
+      <parameter id="ktf_nh4" name="ktf_nh4" value="1.2e-08" units="unit_3" constant="false"/>
+      <parameter id="ktr_nh4" name="ktr_nh4" value="7.3e-08" units="unit_3" constant="true"/>
+      <parameter id="tmf_no3" name="tmf_no3" value="2.167e-07" units="unit_2" constant="true"/>
+      <parameter id="tmr_no3" name="tmr_no3" value="4.5e-10" units="unit_2" constant="true"/>
+      <parameter id="ktf_no3" name="ktf_no3" value="0.0074" units="unit_3" constant="true"/>
+      <parameter id="ktr_no3" name="ktr_no3" value="1.8e-10" units="unit_3" constant="true"/>
+      <parameter id="_m" name="μm" value="4.686e-05" units="unit_1" constant="false"/>
+      <parameter id="tmf_no2" name="tmf_no2" value="3.67e-09" units="unit_2" constant="true"/>
+      <parameter id="tmr_no2" name="tmr_no2" value="9.167e-09" units="unit_2" constant="true"/>
+      <parameter id="ktf_no2" name="ktf_no2" value="3.1e-05" units="unit_3" constant="true"/>
+      <parameter id="ktr_no2" name="ktr_no2" value="3.8e-07" units="unit_3" constant="true"/>
+      <parameter id="ks" name="ks" value="0.00046111" constant="true"/>
+      <parameter id="leach" name="leach" value="9e-11" constant="false"/>
+      <parameter id="up" name="up" value="1e-11" constant="false"/>
+      <parameter id="up_amm" name="up_amm" value="1e-11" constant="false"/>
+      <parameter name="μ" value="2.43780628648126e-05" units="unit_1" constant="false"/>
+      <parameter id="ModelValue_0_0" name="Initial for [E1]" value="1.67e-06">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="_E1" type="InitialValue"/>
+        </annotation>
+      </parameter>
+      <parameter id="ModelValue_1_0" name="Initial for [E2]" value="1.67e-06">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="_E2" type="InitialValue"/>
+        </annotation>
+      </parameter>
+      <parameter id="ModelValue_2_0" name="Initial for kcat1" value="240">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="kcat1" type="InitialValue"/>
+        </annotation>
+      </parameter>
+      <parameter id="ModelValue_3_0" name="Initial for kcat2" value="1350">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="kcat2" type="InitialValue"/>
+        </annotation>
+      </parameter>
+      <parameter id="ModelValue_22_0" name="Initial for ks" value="0.00046111">
+        <annotation>
+          <initialValue xmlns="http://copasi.org/initialValue" parent="ks" type="InitialValue"/>
+        </annotation>
+      </parameter>
+    </listOfParameters>
+    <listOfInitialAssignments>
+      <initialAssignment symbol="ModelValue_0_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> _E1 </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="ModelValue_1_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> _E2 </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="ModelValue_2_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> kcat1 </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="ModelValue_3_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> kcat2 </ci>
+        </math>
+      </initialAssignment>
+      <initialAssignment symbol="ModelValue_22_0">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <ci> ks </ci>
+        </math>
+      </initialAssignment>
+    </listOfInitialAssignments>
+    <listOfRules>
+      <assignmentRule>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> _m </ci>
+            <apply>
+              <divide/>
+              <apply>
+                <divide/>
+                <ci> nh4_ex </ci>
+                <ci> ext </ci>
+              </apply>
+              <apply>
+                <plus/>
+                <ci> ModelValue_22_0 </ci>
+                <apply>
+                  <divide/>
+                  <ci> nh4_ex </ci>
+                  <ci> ext </ci>
+                </apply>
+              </apply>
+            </apply>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vm2">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> ModelValue_1_0 </ci>
+            <ci> ModelValue_3_0 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <assignmentRule variable="Vm1">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci> ModelValue_0_0 </ci>
+            <ci> ModelValue_2_0 </ci>
+          </apply>
+        </math>
+      </assignmentRule>
+      <rateRule variable="cell">
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+          <apply>
+            <times/>
+            <ci>  </ci>
+            <ci> cell </ci>
+          </apply>
+        </math>
+      </rateRule>
+    </listOfRules>
+    <listOfReactions>
+      <reaction id="no3_tranport" name="no3_tranport" reversible="true">
+        <listOfReactants>
+          <speciesReference species="no3_ex" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="no3_p" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <ci> exchange </ci>
+              <ci> tmf_no3 </ci>
+              <ci> ext </ci>
+              <ci> ktf_no3 </ci>
+              <ci> tmr_no3 </ci>
+              <ci> cell </ci>
+              <ci> ktr_no3 </ci>
+              <apply>
+                <divide/>
+                <ci> no3_ex </ci>
+                <ci> ext </ci>
+              </apply>
+              <apply>
+                <divide/>
+                <ci> no3_p </ci>
+                <ci> cell </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="nar" name="nar" reversible="false">
+        <listOfReactants>
+          <speciesReference species="no3_p" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="no2_p" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <apply>
+                <ci> Henri_Michaelis_Menten__irreversible </ci>
+                <apply>
+                  <divide/>
+                  <ci> no3_p </ci>
+                  <ci> cell </ci>
+                </apply>
+                <ci> km1 </ci>
+                <ci> Vm1 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="nrf" name="nrf" reversible="false">
+        <listOfReactants>
+          <speciesReference species="no2_p" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nh4_p" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> cell </ci>
+              <apply>
+                <ci> Henri_Michaelis_Menten__irreversible </ci>
+                <apply>
+                  <divide/>
+                  <ci> no2_p </ci>
+                  <ci> cell </ci>
+                </apply>
+                <ci> km2 </ci>
+                <ci> Vm2 </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="nh4_transport" name="nh4_transport" reversible="true">
+        <listOfReactants>
+          <speciesReference species="nh4_ex" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nh4_p" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <ci> exchange </ci>
+              <ci> tmf_nh4 </ci>
+              <ci> ext </ci>
+              <ci> ktf_nh4 </ci>
+              <ci> tmr_nh4 </ci>
+              <ci> cell </ci>
+              <ci> ktr_nh4 </ci>
+              <apply>
+                <divide/>
+                <ci> nh4_ex </ci>
+                <ci> ext </ci>
+              </apply>
+              <apply>
+                <divide/>
+                <ci> nh4_p </ci>
+                <ci> cell </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="assimilation" name="assimilation" reversible="false">
+        <listOfReactants>
+          <speciesReference species="nh4_p" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nh4_a" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> k1 </ci>
+              <ci> nh4_p </ci>
+            </apply>
+          </math>
+          <listOfParameters>
+            <parameter id="k1" name="k1" value="5e-05"/>
+          </listOfParameters>
+        </kineticLaw>
+      </reaction>
+      <reaction id="no2_transport" name="no2_transport" reversible="true">
+        <listOfReactants>
+          <speciesReference species="no2_ex" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="no2_p" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <ci> exchange </ci>
+              <ci> tmf_no2 </ci>
+              <ci> ext </ci>
+              <ci> ktf_no2 </ci>
+              <ci> tmr_no2 </ci>
+              <ci> cell </ci>
+              <ci> ktr_no2 </ci>
+              <apply>
+                <divide/>
+                <ci> no2_ex </ci>
+                <ci> ext </ci>
+              </apply>
+              <apply>
+                <divide/>
+                <ci> no2_p </ci>
+                <ci> cell </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="no3_leach" name="no3_leach" reversible="false">
+        <listOfReactants>
+          <speciesReference species="no3_ex" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="no3_l" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> ext </ci>
+              <apply>
+                <ci> Constant_flux__irreversible </ci>
+                <ci> leach </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="nh4_uptake" name="nh4_uptake" reversible="false">
+        <listOfReactants>
+          <speciesReference species="nh4_ex" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="nh4_u" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> ext </ci>
+              <apply>
+                <ci> Constant_flux__irreversible </ci>
+                <ci> up_amm </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+      <reaction id="no3_uptake" name="no3_uptake" reversible="false">
+        <listOfReactants>
+          <speciesReference species="no3_ex" stoichiometry="1"/>
+        </listOfReactants>
+        <listOfProducts>
+          <speciesReference species="no3_u" stoichiometry="1"/>
+        </listOfProducts>
+        <kineticLaw>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <times/>
+              <ci> ext </ci>
+              <apply>
+                <ci> Constant_flux__irreversible </ci>
+                <ci> up </ci>
+              </apply>
+            </apply>
+          </math>
+        </kineticLaw>
+      </reaction>
+    </listOfReactions>
+    <listOfEvents>
+      <event id="no3_neg" name="no3_neg">
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <leq/>
+              <apply>
+                <divide/>
+                <ci> no3_ex </ci>
+                <ci> ext </ci>
+              </apply>
+              <cn> 0 </cn>
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="up">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn> 0 </cn>
+            </math>
+          </eventAssignment>
+          <eventAssignment variable="leach">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn> 0 </cn>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="nh4_neg" name="nh4_neg">
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <leq/>
+              <apply>
+                <divide/>
+                <ci> nh4_ex </ci>
+                <ci> ext </ci>
+              </apply>
+              <cn> 0 </cn>
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="up_amm">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn> 0 </cn>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="cell_excess" name="cell_excess">
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <geq/>
+              <ci> cell </ci>
+              <apply>
+                <power/>
+                <cn> 10 </cn>
+                <apply>
+                  <minus/>
+                  <cn> 4 </cn>
+                </apply>
+              </apply>
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="_m">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn> 0 </cn>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+      <event id="amm_toxic" name="amm_toxic">
+        <trigger>
+          <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <apply>
+              <geq/>
+              <apply>
+                <divide/>
+                <ci> nh4_p </ci>
+                <ci> cell </ci>
+              </apply>
+              <cn> 0.01 </cn>
+            </apply>
+          </math>
+        </trigger>
+        <listOfEventAssignments>
+          <eventAssignment variable="ktf_nh4">
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+              <cn type="e-notation"> 1 <sep/> 20 </cn>
+            </math>
+          </eventAssignment>
+        </listOfEventAssignments>
+      </event>
+    </listOfEvents>
+  </model>
+</sbml>

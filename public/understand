@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <link rel="shortcut icon" href="https://static.igem.wiki/common/icons/favicons/igem-2022.svg"/>
+    <link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
+
+    <!-- Bootstrap CSS -->
+    <!-- <link href="static/bootstrap.min.css" rel="stylesheet"> -->
+
+    <!-- Global CSS -->
+    <link href="static/menu.css" rel="stylesheet">
+    <link href="static/footer.css" rel="stylesheet">
+    <link href="static/chatbot.css" rel="stylesheet">
+    <script src="static/menu.js"></script>
+    <script src="static/chatbot.js"></script>
+
+    <!-- Page-specific CSS -->
+    
+<link rel="stylesheet" href="static/drylab.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .container {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+</style>
+<style>
+  .card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+</style>
+<style>
+@keyframes scroll-dot {
+  0%   { transform: translateY(0); opacity: 1; }
+  60%  { transform: translateY(14px); opacity: 0; }
+  100% { opacity: 0; }
+}
+</style>
+
+
+    <title>Understand | SCIREL</title>
+
+</head>
+<body>
+  <!-- Navigation -->
+  <div id="progress-bar"></div>
+
+<!-- Navbar -->
+<nav class="navbar-1">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand" href="index.html">
+      <img src="https://pbs.twimg.com/media/EdLTdOPXgAE7kPZ.jpg" alt="Site Logo"/>
+    </a>
+
+    <!-- Mobile toggle -->
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="nav-toggle-icon"></span>
+    </button>
+
+    <!-- Main Nav -->
+    <ul class="nav-menu" id="nav-menu">
+      <li>
+        <a href="dashboard">Dashboard</a>
+      </li>
+
+      <li>
+        <a href="search">Search</a>
+      </li>
+
+      <li>
+        <a href="understand">Understand</a>
+      </li>
+
+      <li>
+        <a href="visualise">Visualise</a>
+      </li>
+
+      <li>
+        <a href="research-map">Research Map</a>
+      </li>
+      
+      <li><a href="about">About Us</a></li>
+    </ul>
+  </div>
+</nav>
+  <div id="igbot-root">
+  <button id="igbot-launcher" aria-label="Open AI Helper">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M8 10h8M8 14h5" stroke="white" stroke-width="1.8" stroke-linecap="round"/><path d="M4 5h16v9a5 5 0 0 1-5 5H9l-5 3V5Z" stroke="white" stroke-width="1.8" fill="none"/></svg>
+  </button>
+  <section id="igbot-panel" role="dialog" aria-modal="true" aria-label="AI Helper">
+    <header id="igbot-header">
+      <div id="igbot-logo"></div>
+      <div id="igbot-title"><b>AI Helper</b><small>Ask about who we are, what we do, and how we make the world a better place</small></div>
+      <button id="igbot-close" type="button">Close</button>
+    </header>
+    <main id="igbot-chat"></main>
+    <div id="igbot-composer">
+      <form id="igbot-form" autocomplete="off">
+        <input id="igbot-input" type="text" placeholder="Type your question…" required />
+        <button id="igbot-send" type="submit">Send ⮕</button>
+      </form>
+    </div>
+  </section>
+</div>
+
+  <!-- Header -->
+  <!-- <header class="bg-hero py-5 mb-5">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-lg-12">
+          <h1 class="display-4 text-white mt-5 mb-2">Understand</h1>
+	        <p class="lead mb-5 text-white-50"></p>
+        </div>
+      </div>
+    </div>
+  </header> -->
+  
+  <!-- Page Content -->
+  <div id="wiki-page-content"class="container">
+    
+
+<!-- Hero Section -->
+ 
+
+<section id="intro" class="relative flex items-center justify-center">
+  <div class="absolute inset-0">
+    <!-- <img src="https://static.igem.wiki/teams/6006/gt/drylab-banner.avif" class="w-full h-full object-cover"/> -->
+    <img src="static/understand.avif" class="w-full h-full object-cover"/>
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-800/70 via-green-900/60 to-black/60"></div>
+  </div>
+  <div class="relative text-center px-6">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">Understand</h2>
+    <p class="mt-4 text-lg text-gray-200 max-w-2xl mx-auto">
+        Upload papers, books, pdfs, and more to extract key insights using our advanced NLP tools.
+    </p>
+  </div>
+  <div style="
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: Inter, system-ui, sans-serif;
+    color: rgba(255,255,255,0.85);
+  ">
+
+    <span style="
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    ">
+      Scroll
+    </span>
+
+    <div style="
+      width: 26px;
+      height: 42px;
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    ">
+      <span style="
+        width: 6px;
+        height: 6px;
+        background: white;
+        border-radius: 50%;
+        animation: scroll-dot 1.6s infinite;
+      "></span>
+    </div>
+  </div>
+
+ </section> 
+
+
+<div class="max-w-5xl mx-auto px-6 py-24">
+
+  <section class="max-w-6xl mx-auto px-8 mt-10 mb-16">
+  <div class="bg-white rounded-3xl shadow-xl p-10">
+
+    <!-- SECTION HEADER -->
+    <div class="mb-8">
+      <h2 class="text-3xl font-semibold text-slate-900">
+        Input
+      </h2>
+      <p class="mt-2 text-slate-500 max-w-2xl">
+        Paste text or upload a document to analyze its structure, claims, and assumptions.
+      </p>
+    </div>
+
+    <!-- TEXTAREA -->
+    <textarea
+      id="inputText"
+      class="w-full min-h-[320px] resize-y
+             p-5 rounded-2xl
+             border border-slate-300
+             text-slate-800 leading-relaxed
+             focus:outline-none
+             focus:ring-4 focus:ring-purple-500/20
+             focus:border-purple-500"
+      placeholder="Paste text here — papers, articles, notes, explanations...">
+    </textarea>
+
+    <!-- DIVIDER -->
+    <div class="my-8 border-t border-slate-200"></div>
+
+    <!-- ACTION ROW -->
+    <div class="flex flex-col md:flex-row md:items-center gap-6">
+
+      <!-- UPLOAD BOX (SEPARATE, CLEAN) -->
+      <label
+        class="flex items-center justify-center gap-3
+               px-6 py-4 rounded-2xl
+               border border-dashed border-slate-300
+               bg-slate-50 cursor-pointer
+               hover:bg-slate-100 transition
+               text-slate-700 font-medium">
+
+        <span>Upload PDF or Word</span>
+
+        <input
+          type="file"
+          id="fileUpload"
+          accept=".pdf,.doc,.docx"
+          class="hidden" />
+      </label>
+
+      <!-- FILE STATUS -->
+      <span id="fileStatus" class="text-sm text-slate-500"></span>
+
+      <!-- PRIMARY CTA -->
+      <div class="md:ml-auto">
+        <button
+          id="analyzeBtn"
+          class="px-10 py-4 rounded-2xl
+                 bg-purple-600 text-white
+                 font-semibold text-lg
+                 hover:bg-purple-700
+                 transition">
+          Understand
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+
+  <!-- RESULTS -->
+  <section id="results" class="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 hidden">
+    <div class="card" id="summaryCard"></div>
+    <div class="card" id="conceptsCard"></div>
+    <div class="card" id="claimsCard"></div>
+    <div class="card" id="assumptionsCard"></div>
+  </section>
+
+  <!-- Q&A -->
+  <section id="askSection" class="max-w-5xl mx-auto px-6 mt-14 hidden">
+    <div class="bg-white rounded-2xl shadow-lg p-8">
+
+      <header class="mb-6">
+        <h2 class="text-2xl font-semibold text-slate-900">
+          Ask
+        </h2>
+        <p class="mt-1 text-slate-500">
+          Ask targeted questions grounded in the analyzed text.
+        </p>
+      </header>
+
+      <div class="flex flex-col md:flex-row gap-4">
+        <input
+          id="questionInput"
+          class="flex-1 px-4 py-3
+                border border-slate-300 rounded-lg
+                focus:ring-2 focus:ring-green-500
+                text-slate-800"
+          placeholder="What assumptions does the author make?" />
+
+        <button
+          id="askBtn"
+          class="px-6 py-3 rounded-lg
+                bg-green-600 text-white
+                font-semibold
+                hover:bg-green-700 transition">
+          Ask
+        </button>
+      </div>
+
+      <div class="mt-6">
+        <p id="answer" class="text-slate-700 text-lg leading-relaxed"></p>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+
+  </div>
+
+
+  <!-- Footer: MUST mention license AND have a link to team wiki's repository on gitlab.igem.org -->
+  <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Full Page Layout</title>
+        <link rel="stylesheet" href="../static/footer.css">
+        <style>
+            body { background-color: #f3f4f6; }
+        </style>
+</head>
+<body>
+    <div class="container mx-auto px-4 py-8">
+    </div>
+    <footer class="footer text-white bg-gradient-to-r from-green-700 to-purple-700 py-8">
+  <div class="container mx-auto px-4 text-center space-y-3">
+    <div>
+      <p class="text-lg font-semibold">SCIREL — Scientific Research Explorer & Linker</p>
+      <p class="mt-1 text-sm">
+        An open research helper for navigating, connecting, and understanding scientific literature.
+      </p>
+    </div>
+
+    <div class="text-xs leading-relaxed opacity-90">
+      <p>
+        © 2025 SCIREL. All content is released under a
+        <a
+          class="underline hover:text-gray-200"
+          href="https://creativecommons.org/licenses/by/4.0/"
+          rel="license"
+          target="_blank"
+        >
+          Creative Commons Attribution 4.0 International License
+        </a>.
+      </p>
+      <p>
+        SCIREL is free, open-source, and community-driven. Contribute to help improve it
+        <a
+          href="https://en.wikipedia.org/wiki/Wikipedia:Contributing_to_Wikipedia"
+          class="underline hover:text-gray-200"
+          target="_blank"
+        >
+          here
+        </a>.
+      </p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+
+  <!-- Bootstrap Bundle with Popper -->
+  <!-- <script src="static/bootstrap.bundle.min.js"></script> -->
+
+  <!-- Page-specific JS -->
+  
+<script>
+/* ===============================
+   SUMMARY ENGINE — INLINE v1.0
+   Deterministic, role-aware
+================================ */
+
+/* ---------- STATE ---------- */
+let nounFrequency = {};
+let NGRAMS = {};
+
+/* Optional: load ngrams if available */
+fetch("/static/ngrams.json")
+  .then(r => r.ok ? r.json() : {})
+  .then(d => NGRAMS = d)
+  .catch(() => {});
+
+/* ---------- UI HOOKS ---------- */
+const analyzeBtn = document.getElementById("analyzeBtn");
+const inputText = document.getElementById("inputText");
+
+analyzeBtn.addEventListener("click", analyzeText);
+
+/* ---------- MAIN PIPELINE ---------- */
+function analyzeText() {
+  const text = inputText.value.trim();
+  if (!text || text.length < 80) return;
+
+  const sentences = extractSentences(text);
+
+  const summary = generateSummary(text);
+
+  render("summaryCard", "Summary", summary.confident
+    ? [summary.coreSummary]
+    : summary.fallbackSentences
+  );
+
+  render("conceptsCard", "Key Concepts",
+    extractConcepts(text).map(c => `• ${c}`)
+  );
+  render("claimsCard", "Claims", extractClaims(sentences));
+  render("assumptionsCard", "Assumptions", extractAssumptions(sentences));
+
+  document.getElementById("results").classList.remove("hidden");
+  document.getElementById("askSection").classList.remove("hidden");
+}
+
+/* ---------- TEXT UTILS ---------- */
+function extractSentences(text) {
+  return text
+    .replace(/\n+/g, " ")
+    .split(/(?<=[.!?])\s+/)
+    .map(s => s.trim())
+    .filter(s => s.length > 30 && s.length < 260 && !s.endsWith("?"));
+}
+
+/* ---------- ROLE DETECTION ---------- */
+function detectRole(sentence) {
+  const s = sentence.toLowerCase();
+
+  if (/is defined as|refers to|is a /.test(s)) return "definition";
+  if (/we (show|argue|find|demonstrate)|this paper/.test(s)) return "claim";
+  if (/we use|method|approach|algorithm|model/.test(s)) return "method";
+  if (/results|data|experiment|analysis|evaluation/.test(s)) return "evidence";
+  if (/however|limitation|assumes|may not|might/.test(s)) return "limitation";
+
+  return "other";
+}
+
+/* ---------- SCORING ---------- */
+function scoreSentence(sentence, nouns, index, total) {
+  let score = 0;
+  const s = sentence.toLowerCase();
+
+  if (/(shows|demonstrates|argues|finds|proposes|introduces|describes)/.test(s))
+    score += 2;
+
+  score += Math.min(
+    nouns.filter(n => s.includes(n)).length,
+    3
+  );
+
+  if (index < total * 0.15 || index > total * 0.85)
+    score += 1;
+
+  const wc = s.split(" ").length;
+  if (wc >= 10 && wc <= 25) score += 1;
+
+  if (/(various|significant|important|many|several|some)/.test(s))
+    score -= 2;
+
+  nouns.forEach(n => {
+    if (s.includes(n) && nounFrequency[n] === 1)
+      score -= 3;
+  });
+
+  return score;
+}
+
+/* ---------- SUMMARY CORE ---------- */
+function generateSummary(text) {
+  const sentences = extractSentences(text);
+  if (sentences.length < 3) {
+    return { confident: false, fallbackSentences: sentences };
+  }
+
+  const nouns = extractTopNouns(sentences);
+
+  const scored = sentences.map((s, i) => ({
+    text: s,
+    index: i,
+    role: detectRole(s),
+    score: scoreSentence(s, nouns, i, sentences.length)
+  }));
+
+  scored.sort((a, b) => b.score - a.score);
+
+  const top = scored.slice(0, 12);
+  const core = buildCoreSummary(top, nouns);
+
+  return {
+    confident: validateSummary(core, top),
+    coreSummary: core,
+    fallbackSentences: top.slice(0, 3).map(s => s.text)
+  };
+}
+
+function buildCoreSummary(sentences, nouns) {
+  const claim = sentences.find(s => s.role === "claim");
+  const base = claim || sentences[0];
+
+  const topic = nouns[0] || "the topic";
+  const context = nouns[1] || "the broader context";
+
+  return `This text discusses ${topic} and argues that ${simplify(base.text)}, within the context of ${context}.`;
+}
+
+function simplify(sentence) {
+  return sentence
+    .replace(/we (show|argue|find|demonstrate) that/i, "")
+    .replace(/this paper/i, "")
+    .trim();
+}
+
+function validateSummary(core, sentences) {
+  if (!core) return false;
+  const hasClaim = sentences.some(s => s.role === "claim");
+  return hasClaim;
+}
+
+/* ---------- NOUN EXTRACTION ---------- */
+function extractTopNouns(sentences) {
+  nounFrequency = {};
+
+  sentences.forEach(s => {
+    s.toLowerCase()
+      .replace(/[^a-z\s]/g, "")
+      .split(" ")
+      .filter(w => w.length > 4)
+      .forEach(w => nounFrequency[w] = (nounFrequency[w] || 0) + 1);
+  });
+
+  return Object.entries(nounFrequency)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(x => x[0]);
+}
+
+/* ---------- CONCEPTS ---------- */
+function extractConcepts(text) {
+  const sentences = extractSentences(text);
+
+  const candidates = {};
+  const STOPWORDS = new Set([
+    "this paper", "our method", "this work", "results show",
+    "previous work", "related work", "significant results"
+  ]);
+
+  sentences.forEach((sentence, idx) => {
+    const clean = sentence
+      .toLowerCase()
+      .replace(/[^a-z\s]/g, " ")
+      .replace(/\s+/g, " ");
+
+    const words = clean.split(" ");
+
+    // --- 1. noun-noun & adj-noun phrases ---
+    for (let i = 0; i < words.length - 1; i++) {
+      const w1 = words[i];
+      const w2 = words[i + 1];
+
+      if (w1.length > 3 && w2.length > 3) {
+        const phrase = `${w1} ${w2}`;
+        scoreConcept(phrase, candidates, idx);
+      }
+    }
+
+    // --- 2. noun-of-noun patterns ---
+    const ofMatches = clean.match(/\b[a-z]{4,}\s+of\s+[a-z]{4,}\b/g);
+    if (ofMatches) {
+      ofMatches.forEach(p => scoreConcept(p, candidates, idx, 2));
+    }
+  });
+
+  // --- scoring + filtering ---
+  return Object.entries(candidates)
+    .filter(([phrase, data]) =>
+      data.count >= 2 &&
+      !STOPWORDS.has(phrase) &&
+      !phrase.match(/(paper|method|result|study)/)
+    )
+    .map(([phrase, data]) => ({
+      phrase,
+      score: data.score
+    }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 6)
+    .map(x => x.phrase);
+}
+
+/* ---------- helpers ---------- */
+
+function scoreConcept(phrase, store, sentenceIndex, boost = 1) {
+  if (!store[phrase]) {
+    store[phrase] = {
+      count: 0,
+      score: 0,
+      firstSeen: sentenceIndex
+    };
+  }
+
+  store[phrase].count += 1;
+  store[phrase].score += boost;
+
+  // sentence position bonus
+  if (sentenceIndex < 5) store[phrase].score += 1;
+
+  // ngram prior if available
+  if (NGRAMS[phrase]) {
+    store[phrase].score += NGRAMS[phrase] * 2;
+  }
+}
+
+
+/* ---------- CLAIMS & ASSUMPTIONS ---------- */
+function extractClaims(sentences) {
+  return sentences.filter(s =>
+    /(shows|results in|leads to|suggests|demonstrates|we find)/i.test(s)
+  );
+}
+
+function extractAssumptions(sentences) {
+  return sentences.filter(s =>
+    /(assume|assuming|may|might|under the condition)/i.test(s)
+  );
+}
+
+/* ---------- RENDER ---------- */
+function render(id, title, items) {
+  const el = document.getElementById(id);
+  el.innerHTML = `
+    <h3 class="font-semibold text-lg mb-4">${title}</h3>
+    <ul class="space-y-2 text-sm leading-relaxed">
+      ${
+        items.length
+          ? items.map(i => `<li>${i}</li>`).join("")
+          : "<li class='text-slate-400'>None detected</li>"
+      }
+    </ul>
+  `;
+}
+
+/* ---------- Q&A ---------- */
+document.getElementById("askBtn").addEventListener("click", () => {
+  const q = document.getElementById("questionInput").value.toLowerCase();
+  const sentences = extractSentences(inputText.value);
+  const claims = extractClaims(sentences);
+
+  const match = claims.find(c =>
+    q.split(" ").some(w => c.toLowerCase().includes(w))
+  );
+
+  document.getElementById("answer").textContent =
+    match || "No direct claim found related to your question.";
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://unpkg.com/mammoth/mammoth.browser.min.js"></script>
+<script src="static/drylab.js"></script>
+
+
+</body>
+</html>
