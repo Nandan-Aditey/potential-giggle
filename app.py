@@ -1,7 +1,8 @@
 from os import path
 from pathlib import Path
+import os
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from flask_frozen import Freezer
 
 
@@ -26,9 +27,13 @@ def serve():
 def home():
     return render_template('pages/home.html')
 
-@app.route('/favicon.ico')
+@app.route("/favicon.ico")
 def favicon():
-    return '', 204
+    return send_from_directory(
+        os.path.join(app.root_path, "static"),
+        "favicon.ico",
+        mimetype="image/vnd.microsoft.icon"
+    )
 
 @app.route('/<page>')
 def pages(page):
