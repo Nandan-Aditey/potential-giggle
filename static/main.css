@@ -214,6 +214,7 @@ body {
 
   .hero-title {
     font-size: 2rem;
+    color: black;
   }
 
   .hero-text {
@@ -311,7 +312,7 @@ body {
   position: relative;
   width: 100%;
   height: 100vh;
-  background-image: url("https://static.igem.wiki/teams/6006/wiki/soil-with-roots.webp");
+  background-image: url("../static/home-hero.avif");
   background-size: cover;
   background-position: center;
   display: flex;
@@ -698,9 +699,9 @@ body {
 }
 
 /* When the card is visible, the ::before element gets a height */
-.stat-card.is-visible.fill-85::before { height: 90%; }
-.stat-card.is-visible.fill-30::before { height: 85%; }
-.stat-card.is-visible.fill-70::before { height: 20%; }
+.stat-card.is-visible.fill-85::before { height: 50%; }
+.stat-card.is-visible.fill-30::before { height: 90%; }
+.stat-card.is-visible.fill-70::before { height: 70%; }
 
 /* Ensure the card content sits on top of the fill layer */
 .stat-card-header, .stat-card p {

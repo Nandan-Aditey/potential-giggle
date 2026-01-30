@@ -1,0 +1,720 @@
+{% extends "layout.html" %}
+
+{% block title %}Search{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='wetlab.css') }}">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .container {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+</style>
+<style>
+      /* 2. Define a modern color palette and basic styles */
+      :root {
+        --primary-color: #7c3aed;        /* purple-600 */
+        --primary-hover: #6d28d9;        /* purple-700 */
+        --secondary-color: #16a34a;      /* green-600 */
+
+        --background-color: #f8fafc;     /* slate-50 */
+        --card-background: #ffffff;
+
+        --text-color: #0f172a;           /* slate-900 */
+        --secondary-text-color: #475569; /* slate-600 */
+        --border-color: #e5e7eb;         /* gray-200 */
+
+        --shadow: 0 6px 20px rgba(15, 23, 42, 0.06);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Helvetica, Arial, sans-serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        line-height: 1.6;
+      }
+
+      /* 3. Create a centered, responsive main container */
+      .container-ncbi {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2em;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 2.5em;
+      }
+
+      h1 {
+        font-weight: 700;
+        font-size: 10rem;          /* ↑ was default */
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: #7c3aed;           /* Tailwind purple-600 */
+        margin-bottom: 0.4em;
+      }
+
+      header h1 {
+        font-size: 2.5em;
+      }
+      header p {
+        font-size: 1.35rem;       /* ↑ from 1.1em */
+        max-width: 680px;
+        margin: 0 auto;
+        color: #475569;           /* slate-600 */
+      }
+
+
+      /* 4. Style the search controls to look modern and cohesive */
+      .search-controls {
+        display: flex;
+        gap: 1em;
+        margin-bottom: 2.5em;
+      }
+
+      /* #searchTerm {
+        flex-grow: 1;
+        font-size: 1rem;
+        padding: 0.75em 1em;
+        border-radius: 8px;
+        border: 1px solid var(--border-color);
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      #searchTerm:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(0, 90, 156, 0.2);
+      } */
+
+      #searchTerm {
+        flex-grow: 1;
+        font-size: 1.05rem;
+        padding: 0.9em 1.1em;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        background-color: white;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      #searchTerm::placeholder {
+        color: #9ca3af; /* gray-400 */
+      }
+
+      #searchTerm:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+      }
+
+
+      /* #searchButton {
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0.75em 1.5em;
+        border-radius: 8px;
+        border: none;
+        background-color: var(--primary-color);
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      } */
+
+      #searchButton {
+        font-size: 1rem;
+        font-weight: 600;
+        padding: 0.9em 1.6em;
+        border-radius: 12px;
+        border: none;
+        background-color: var(--primary-color);
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.2s, transform 0.15s;
+      }
+
+      #searchButton:hover {
+        background-color: var(--primary-hover);
+        transform: translateY(-1px);
+      }
+
+
+      #searchButton:hover {
+        background-color: var(--primary-hover);
+      }
+
+      /* 5. Style each result as an interactive "card" */
+      #summary-list ul {
+        list-style-type: none;
+      }
+
+      #summary-list li {
+        background-color: var(--card-background);
+        padding: 1.5em;
+        border: 1px solid var(--border-color);
+        margin-bottom: 1em;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      #summary-list li:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+      }
+
+      /* .result-info strong {
+        font-weight: 600;
+        font-size: 1.1em;
+        color: #222;
+      } */
+      .result-info strong {
+        font-weight: 600;
+        font-size: 1.15em;
+        color: #1e293b; /* slate-800 */
+      }
+
+
+      .result-details {
+        font-size: 0.9em;
+        color: var(--secondary-text-color);
+        background-color: var(--background-color);
+        padding: 0.75em;
+        border-radius: 8px;
+        margin-top: 0.5em;
+      }
+
+      .result-details strong {
+        font-weight: 500;
+        color: #444;
+        font-size: 1em;
+      }
+
+      .result-actions button {
+        font-size: 0.9em;
+        padding: 0.5em 1em;
+        border-radius: 6px;
+        border: 1px solid var(--border-color);
+        background-color: #fdfdfd;
+        cursor: pointer;
+        transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        margin-right: 0.5em;
+      }
+      /* .result-actions button:hover {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      } */
+      .result-actions button:hover {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+      }
+
+      .result-actions button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+        color: #fff;
+      }
+
+      /* 6. Add a CSS loading spinner for better feedback */
+      .loader {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid var(--primary-color);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 2em auto;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* 7. Add responsiveness for mobile devices */
+      @media (max-width: 600px) {
+        .container-ncbi {
+          padding: 1em;
+        }
+        .search-controls {
+          flex-direction: column;
+        }
+        header {
+          margin-bottom: 1.5em;
+        }
+      }
+    </style>
+{% endblock %}
+
+{% block page_content %}
+
+<!-- Hero Section -->
+
+<section id="intro" class="relative flex items-center justify-center">
+  <div class="absolute inset-0">
+    <!-- <img src="https://static.igem.wiki/teams/6006/gallery/wetlab/hero-wetlab.avif" class="w-full h-full object-cover"/> -->
+     <img src="{{ url_for('static', filename='Search_.avif') }}" class="w-full h-full object-cover"/>
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-800/70 via-green-900/60 to-black/60"></div>
+  </div>
+  <div class="relative text-center px-6">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">Search</h2>
+    <p class="mt-4 text-lg text-gray-200 max-w-2xl mx-auto">
+        Find papers, conduct literature review, and design experiments to further your research.
+      </p>
+  </div>
+    <div style="
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: Inter, system-ui, sans-serif;
+    color: rgba(255,255,255,0.85);
+  ">
+
+    <span style="
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.75;
+    ">
+      Scroll
+    </span>
+
+    <div style="
+      width: 26px;
+      height: 42px;
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 16px;
+      display: flex;
+      justify-content: center;
+      padding-top: 6px;
+    ">
+      <span style="
+        width: 6px;
+        height: 6px;
+        background: white;
+        border-radius: 50%;
+        animation: scroll-dot 1.6s infinite;
+      "></span>
+    </div>
+  </div>
+
+  <style>
+  @keyframes scroll-dot {
+    0%   { transform: translateY(0); opacity: 1; }
+    60%  { transform: translateY(14px); opacity: 0; }
+    100% { opacity: 0; }
+  }
+  </style>
+
+
+</section>
+
+<section class="max-w-4xl mx-auto px-6 mt-24 mb-16 text-center">
+  <h2 class="text-4xl font-semibold tracking-tight text-slate-900 mb-6">
+    Domain-Specific Search, Done Right
+  </h2>
+
+  <p class="text-slate-600 text-lg leading-relaxed max-w-3xl mx-auto">
+    SCIREL lets you search <span class="font-medium text-slate-800">within scientific domains</span>,
+    not across the entire internet. Instead of generic keyword matching, our tools are
+    designed around the structure, terminology, and databases that researchers actually use,
+    ensuring results that are precise, contextual, and trustworthy.
+  </p>
+
+  <p class="mt-6 text-slate-500 text-base max-w-2xl mx-auto">
+    Below is one such example: a focused interface for querying the
+    <span class="font-medium text-slate-700">NCBI Nucleotide Database</span>,
+    built to surface relevant biological records without unnecessary noise.
+  </p>
+</section>
+
+<div class="container-ncbi">
+  <header>
+    <h1>BioSearch</h1>
+    <p>An intuitive interface to the NCBI Nucleotide Database.</p>
+  </header>
+
+  <div class="search-controls">
+    <input
+      type="text"
+      id="searchTerm"
+      value=""
+      placeholder="Enter search term..."
+    />
+    <button id="searchButton">Search</button>
+  </div>
+
+  <div id="summary-list"></div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='ncbi_api.js') }}"></script>
+<!-- <script src="{{ url_for('static', filename='ncbi_api.js') }}"></script>
+    <script>
+      const searchButton = document.getElementById("searchButton");
+      const searchTermInput = document.getElementById("searchTerm");
+      const summaryListDiv = document.getElementById("summary-list");
+
+      const ghostTexts = [
+        "Human Insulin Gene",
+        "Pseudomonas Putida",
+        "CRISPR Cas9",
+        "pBR322 plasmid",
+        "Green Fluorescent Protein",
+      ];
+
+      let ghostIndex = 0;
+      let ghostChar = 0;
+      let ghostDeleting = false;
+      let ghostActive = true;
+      let ghostTimer = null;
+
+      function startGhostTyping() {
+        if (ghostTimer) return;
+
+        ghostTimer = setInterval(() => {
+          if (!ghostActive || searchTermInput.value.length > 0) {
+            searchTermInput.placeholder = "Enter search term...";
+            return;
+          }
+
+          const text = ghostTexts[ghostIndex];
+
+          if (!ghostDeleting) {
+            ghostChar++;
+            if (ghostChar === text.length) {
+              setTimeout(() => (ghostDeleting = true), 1200);
+            }
+          } else {
+            ghostChar--;
+            if (ghostChar === 0) {
+              ghostDeleting = false;
+              ghostIndex = (ghostIndex + 1) % ghostTexts.length;
+            }
+          }
+
+          searchTermInput.placeholder = text.slice(0, ghostChar);
+        }, 80);
+      }
+
+      function stopGhostTyping() {
+        ghostActive = false;
+        clearInterval(ghostTimer);
+        ghostTimer = null;
+      }
+
+      searchTermInput.addEventListener("input", () => {
+        if (searchTermInput.value.length > 0) {
+          stopGhostTyping();
+        } else {
+          ghostActive = true;
+          startGhostTyping();
+        }
+      });
+
+      // Start on load
+      startGhostTyping();
+
+
+      async function handleSearch() {
+        const query = searchTermInput.value;
+        if (!query) {
+          summaryListDiv.innerHTML = "<p>Please enter a search term.</p>";
+          return;
+        }
+        // USE THE CSS LOADER instead of text
+        summaryListDiv.innerHTML = `<div class="loader"></div>`;
+
+        try {
+          const esearchXml = await getInfo(query);
+          const ids = await parseEsearchXml(esearchXml);
+          if (ids.length === 0) {
+            summaryListDiv.innerHTML =
+              "<p>No results found for your query.</p>";
+            return;
+          }
+
+          const summaries = await esummary(ids);
+          summaryListDiv.innerHTML = "";
+          const ul = document.createElement("ul");
+
+          summaries.forEach((summary) => {
+            const li = document.createElement("li");
+            li.dataset.uid = summary.Uid;
+
+            const infoDiv = document.createElement("div");
+            infoDiv.className = "result-info";
+            infoDiv.innerHTML = `
+                        <strong>${summary.Title}</strong>
+                        <div class="result-details">
+                             <strong>Organism:</strong> ${
+                               summary.Organism || "N/A"
+                             } |
+                            <strong>Type:</strong> ${
+                              summary.Biomol || "N/A"
+                            } <br> 
+                            <strong>Topology:</strong> ${
+                              summary.Topology || "N/A"
+                            } | 
+                            <strong>Updated:</strong> ${
+                              summary.UpdateDate
+                                ? summary.UpdateDate.split(" ")[0]
+                                : "N/A"
+                            }
+                        </div>
+                    `;
+
+            const actionsDiv = document.createElement("div");
+            actionsDiv.className = "result-actions";
+            const formats = [
+              { label: "GenBank", format: "gb" },
+              { label: "FASTA", format: "fasta" },
+              { label: "GenBank XML", format: "gbseq" },
+            ];
+            formats.forEach((item) => {
+              const button = document.createElement("button");
+              button.textContent = item.label;
+              button.dataset.format = item.format;
+              actionsDiv.appendChild(button);
+            });
+
+            li.appendChild(infoDiv);
+            li.appendChild(actionsDiv);
+            ul.appendChild(li);
+          });
+
+          summaryListDiv.appendChild(ul);
+        } catch (error) {
+          console.error(error);
+          summaryListDiv.innerHTML = `<p style="color: red; text-align: center;">An error occurred: ${error.message}</p>`;
+        }
+      }
+
+      // handleResultClick function remains unchanged
+      async function handleResultClick(event) {
+        const clickedButton = event.target.closest("button[data-format]");
+        if (!clickedButton) return;
+        const parentLi = clickedButton.closest("li[data-uid]");
+        const uid = parentLi.dataset.uid;
+        const format = clickedButton.dataset.format;
+        const originalButtonText = clickedButton.textContent;
+        clickedButton.textContent = "Loading...";
+        clickedButton.disabled = true;
+        try {
+          const recordData = await efetch(uid, format);
+          const mimeType =
+            format === "gbseq" ? "application/xml" : "text/plain";
+          const blob = new Blob([recordData], { type: mimeType });
+          const url = URL.createObjectURL(blob);
+          window.open(url, "_blank");
+          URL.revokeObjectURL(url);
+        } catch (error) {
+          console.error(error);
+          alert(
+            `Error fetching ${format.toUpperCase()} for ID ${uid}: ${
+              error.message
+            }`
+          );
+        } finally {
+          clickedButton.textContent = originalButtonText;
+          clickedButton.disabled = false;
+        }
+      }
+
+      searchButton.addEventListener("click", handleSearch);
+      summaryListDiv.addEventListener("click", handleResultClick);
+      searchTermInput.addEventListener("keydown", e => {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          handleSearch();
+        }
+      });
+
+    </script> -->
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const searchButton = document.getElementById("searchButton");
+    const searchTermInput = document.getElementById("searchTerm");
+    const summaryListDiv = document.getElementById("summary-list");
+
+    const searchPlaceholders = [
+      "Pseudomonas putida...",
+      "Human insulin gene...",
+      "CRISPR Cas9...",
+      "Green Fluorescent Protein...",
+      "pBR322 plasmid...",
+    ];
+
+    // Animation settings
+    const typeSpeed = 50; // ms per character
+    const deleteSpeed = 30; // ms per character
+    const pauseTime = 1500; // ms to pause after typing
+
+    let placeholderIndex = 0;
+
+    // Helper function to create a delay
+    function sleep(ms) {
+      return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+
+    // Main animation loop function
+    async function animatePlaceholder() {
+      while (true) {
+        const currentText = searchPlaceholders[placeholderIndex];
+
+        // Typing animation
+        for (let i = 0; i < currentText.length; i++) {
+          searchTermInput.placeholder = currentText.substring(0, i + 1);
+          await sleep(typeSpeed);
+        }
+
+        // Pause after typing is complete
+        await sleep(pauseTime);
+
+        // Deleting animation
+        for (let i = currentText.length; i > 0; i--) {
+          searchTermInput.placeholder = currentText.substring(0, i - 1);
+          await sleep(deleteSpeed);
+        }
+
+        // Move to the next placeholder in the array
+        placeholderIndex = (placeholderIndex + 1) % searchPlaceholders.length;
+      }
+    }
+
+    // Start the animation
+    animatePlaceholder();
+
+    async function handleSearch() {
+      const query = searchTermInput.value;
+      if (!query) {
+        summaryListDiv.innerHTML = "<p>Please enter a search term.</p>";
+        return;
+      }
+      summaryListDiv.innerHTML = `<div class="loader"></div>`;
+
+      try {
+        const esearchXml = await getInfo(query);
+        const ids = await parseEsearchXml(esearchXml);
+        if (ids.length === 0) {
+          summaryListDiv.innerHTML = "<p>No results found for your query.</p>";
+          return;
+        }
+
+        const summaries = await esummary(ids);
+        summaryListDiv.innerHTML = "";
+        const ul = document.createElement("ul");
+
+        summaries.forEach((summary) => {
+          const li = document.createElement("li");
+          li.dataset.uid = summary.Uid;
+
+          li.innerHTML = `
+            <div class="result-info">
+              <strong>${summary.Title}</strong>
+              <div class="result-details">
+                <strong>Organism:</strong> ${summary.Organism || "N/A"} | 
+                <strong>Type:</strong> ${summary.Biomol || "N/A"} <br>
+                <strong>Topology:</strong> ${summary.Topology || "N/A"} | 
+                <strong>Updated:</strong> ${
+                  summary.UpdateDate ? summary.UpdateDate.split(" ")[0] : "N/A"
+                }
+              </div>
+            </div>
+            <div class="result-actions">
+              <button data-format="gb">GenBank</button>
+              <button data-format="fasta">FASTA</button>
+              <button data-format="gbseq">GenBank XML</button>
+            </div>
+          `;
+          ul.appendChild(li);
+        });
+
+        summaryListDiv.appendChild(ul);
+      } catch (error) {
+        console.error(error);
+        summaryListDiv.innerHTML = `<p style="color: red; text-align: center;">An error occurred: ${error.message}</p>`;
+      }
+    }
+
+    async function handleResultClick(event) {
+      const parentLi = event.target.closest("li[data-uid]");
+      if (!parentLi) {
+        return;
+      }
+
+      const clickedButton = event.target.closest("button[data-format]");
+
+      if (clickedButton) {
+        event.stopPropagation();
+
+        const uid = parentLi.dataset.uid;
+        const format = clickedButton.dataset.format;
+        const originalButtonText = clickedButton.textContent;
+
+        clickedButton.textContent = "Downloading...";
+        clickedButton.disabled = true;
+
+        try {
+          const recordData = await efetch(uid, format);
+          const blob = new Blob([recordData], { type: "text/plain" });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = `${uid}.${format}.txt`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+          URL.revokeObjectURL(url);
+        } catch (error) {
+          console.error(error);
+          alert(
+            `Error downloading ${format.toUpperCase()} for ID ${uid}: ${
+              error.message
+            }`
+          );
+        } finally {
+          clickedButton.textContent = originalButtonText;
+          clickedButton.disabled = false;
+        }
+      } else {
+        const uid = parentLi.dataset.uid;
+        const viewerUrl = `/genbank?uid=${uid}&format=gb`;
+        window.open(viewerUrl, "_blank");
+      }
+    }
+
+    searchButton.addEventListener("click", handleSearch);
+    searchTermInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        handleSearch();
+      }
+    });
+    summaryListDiv.addEventListener("click", handleResultClick);
+  });
+</script>
+{% endblock %}

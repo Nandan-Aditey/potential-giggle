@@ -10,8 +10,9 @@
 
 <!-- Hero Section -->
   <section class="relative h-[70vh] flex items-center justify-center text-center">
-    <img src="https://static.igem.wiki/teams/6006/wiki/hplanding/hp-bg.avif" 
-         class="absolute inset-0 w-full h-full object-cover"/>
+    <!-- <img src="https://static.igem.wiki/teams/6006/wiki/hplanding/hp-bg.avif" -->
+    <img src="{{ url_for('static', filename='visualize.avif') }}"
+         class="absolute inset-0 w-full h-full object-cover" style="transform: rotate(90deg) !important;"/>
     <div class="absolute inset-0 bg-gradient-to-br from-purple-800/70 via-green-900/60 to-black/60"></div>
     <div class="relative z-10 max-w-3xl px-4">
       <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">Human Practices</h2>
@@ -19,6 +20,55 @@
         Understanding the broader impact of ARGUS-2440: ethics, sustainability, and collaboration with society.
       </p>
     </div>
+    <div style="
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, system-ui, sans-serif;
+  color: rgba(255,255,255,0.85);
+">
+
+  <span style="
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  ">
+    Scroll
+  </span>
+
+  <div style="
+    width: 26px;
+    height: 42px;
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+  ">
+    <span style="
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: scroll-dot 1.6s infinite;
+    "></span>
+  </div>
+</div>
+
+<style>
+@keyframes scroll-dot {
+  0%   { transform: translateY(0); opacity: 1; }
+  60%  { transform: translateY(14px); opacity: 0; }
+  100% { opacity: 0; }
+}
+</style>
+
   </section>
 
   <!-- Our Approach -->

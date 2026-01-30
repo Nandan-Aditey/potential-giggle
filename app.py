@@ -1,7 +1,7 @@
 from os import path
 from pathlib import Path
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_frozen import Freezer
 
 
@@ -26,9 +26,25 @@ def serve():
 def home():
     return render_template('pages/home.html')
 
+@app.route('/favicon.ico')
+def favicon():
+    return '', 204
+
 @app.route('/<page>')
 def pages(page):
     return render_template(str(Path('pages')) + '/' + page.lower() + '.html')
+
+
+@app.route("/genbank")
+def genbank_viewer():
+    uid = request.args.get("uid")
+    format = request.args.get("format", "gb")
+    return render_template(
+        "pages/genbank.html",
+        uid=uid,
+        format=format
+    )
+
 
 # Main Function, Runs at http://0.0.0.0:8081
 if __name__ == "__main__":

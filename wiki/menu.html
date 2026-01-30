@@ -5,7 +5,7 @@
   <div class="container">
     <!-- Logo -->
     <a class="navbar-brand" href="{{ url_for('home') }}">
-      <img src="https://static.igem.wiki/teams/6006/wiki/igemlogo.webp" alt="Site Logo"/>
+      <img src="https://pbs.twimg.com/media/EdLTdOPXgAE7kPZ.jpg" alt="Site Logo"/>
     </a>
 
     <!-- Mobile toggle -->
@@ -16,78 +16,26 @@
     <!-- Main Nav -->
     <ul class="nav-menu" id="nav-menu">
       <li>
-        <a href="{{ url_for('pages', page='project') }}">Project</a>
-        <nav class="navbar-2">
-          <div class="container">
-            <ul class="nav-menu_hovered">
-              <li><a href="{{ url_for('pages', page='ideation') }}">Ideation</a></li>
-              <li><a href="{{ url_for('pages', page='overview') }}">Overview</a></li>
-              <li><a href="{{ url_for('pages', page='engineering') }}">Engineering</a></li>
-              <li><a href="{{ url_for('pages', page='contribution') }}">Contribution</a></li>
-            </ul>
-          </div>
-        </nav>
+        <a href="{{ url_for('pages', page='dashboard') }}">Dashboard</a>
       </li>
 
       <li>
-        <a href="{{ url_for('pages', page='wetlab') }}">Wet Lab</a>
-        <nav class="navbar-2">
-          <div class="container">
-            <ul class="nav-menu_hovered">
-              <li><a href="{{ url_for('pages', page='design') }}">Design</a></li>
-              <li><a href="{{ url_for('pages', page='experimentation') }}">Experimentation</a></li>
-              <li><a href="{{ url_for('pages', page='notebook') }}">Notebook</a></li>
-              <li><a href="{{ url_for('pages', page='parts') }}">Parts</a></li>
-              <li><a href="{{ url_for('pages', page='delivery') }}">Delivery Mechanisms</a></li>
-              <li><a href="{{ url_for('pages', page='biosafety') }}">Biosafety and Biosecurity</a></li>
-            </ul>
-          </div>
-        </nav>
+        <a href="{{ url_for('pages', page='search') }}">Search</a>
       </li>
 
       <li>
-        <a href="{{ url_for('pages', page='drylab') }}">Dry Lab</a>
-        <nav class="navbar-2">
-          <div class="container">
-            <ul class="nav-menu_hovered">
-              <li><a href="{{ url_for('pages', page='model') }}">Model</a></li>
-              <li><a href="{{ url_for('pages', page='genbank') }}">Improvised GenBank</a></li>
-              <li><a href="{{ url_for('pages', page='ml') }}">ML Modelling</a></li>
-              <li><a href="{{ url_for('pages', page='alphafold') }}">Alphafold</a></li>
-            </ul>
-          </div>
-        </nav>
+        <a href="{{ url_for('pages', page='understand') }}">Understand</a>
       </li>
 
       <li>
-        <a href="{{ url_for('pages', page='human-practices') }}">Human Practices</a>
-        <nav class="navbar-2">
-          <div class="container">
-            <ul class="nav-menu_hovered">
-              <li><a href="{{ url_for('pages', page='integrated-human-practices') }}">Integrated Human Practices</a></li>
-              <li><a href="{{ url_for('pages', page='results') }}">Public Perception</a></li>
-              <li><a href="{{ url_for('pages', page='sustainability') }}">Sustainable Development</a></li>
-              <li><a href="{{ url_for('pages', page='blogs') }}">Blogs</a></li>
-              <li><a href="{{ url_for('pages', page='igemfounder') }}">iGEM Founder's Meet</a></li>
-              <li><a href="{{ url_for('pages', page='pond') }}">Animation</a></li>
-            </ul>
-          </div>
-        </nav>
+        <a href="{{ url_for('pages', page='visualise') }}">Visualise</a>
       </li>
 
       <li>
-        <a href="{{ url_for('pages', page='team') }}">Team</a>
-        <nav class="navbar-2">
-          <div class="container">
-            <ul class="nav-menu_hovered">
-              <li><a href="{{ url_for('pages', page='attributions') }}">Attributions</a></li>
-              <li><a href="{{ url_for('pages', page='gallery') }}">Gallery</a></li>
-              <li><a href="{{ url_for('pages', page='aiim') }}">AIIM</a></li>
-            </ul>
-          </div>
-        </nav>
+        <a href="{{ url_for('pages', page='research-map') }}">Research Map</a>
       </li>
-      <li><a href="{{ url_for('pages', page='awards') }}">Awards</a></li>
+      
+      <li><a href="{{ url_for('pages', page='about') }}">About Us</a></li>
     </ul>
   </div>
 </nav>

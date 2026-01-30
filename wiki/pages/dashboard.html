@@ -1,0 +1,948 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='wetlab.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='project.css') }}">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .container {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+</style>
+
+{% endblock %}
+
+{% block page_content %}
+
+<!-- Hero Section -->
+  <section id="intro" class="relative flex items-center justify-center">
+  <div class="absolute inset-0">
+    <!-- <img src="https://static.igem.wiki/teams/6006/wiki/nora-jane-long-ellinjlfwl8-unsplash.avif" class="w-full h-full object-cover"/> -->
+    <img src="{{ url_for('static', filename='dash2.avif') }}" class="w-full h-full object-cover"/> 
+    <div class="absolute inset-0 bg-gradient-to-br from-purple-800/70 via-green-900/60 to-black/60"></div>
+  </div>
+  <div class="relative text-center px-6">
+    <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">Dashboard</h2>
+  </div>
+  <div style="
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-family: Inter, system-ui, sans-serif;
+  color: rgba(255,255,255,0.85);
+">
+
+  <span style="
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.75;
+  ">
+    Scroll
+  </span>
+
+  <div style="
+    width: 26px;
+    height: 42px;
+    border: 2px solid rgba(255,255,255,0.6);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    padding-top: 6px;
+  ">
+    <span style="
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: scroll-dot 1.6s infinite;
+    "></span>
+  </div>
+</div>
+
+<style>
+@keyframes scroll-dot {
+  0%   { transform: translateY(0); opacity: 1; }
+  60%  { transform: translateY(14px); opacity: 0; }
+  100% { opacity: 0; }
+}
+</style>
+
+</section>
+
+
+<!-- Dashboard Wrapper -->
+<section class="bg-gray-50 py-20">
+  <div class="max-w-7xl mx-auto px-6">
+    
+    <!-- Main Dashboard Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+      <!-- Research Snapshot -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-semibold text-purple-700 mb-4">
+          Research Snapshot
+        </h3>
+
+        <div class="space-y-3 text-sm text-gray-700">
+          <div class="flex justify-between">
+            <span>Papers read</span>
+            <span class="font-semibold text-green-700" id="snap-read">0</span>
+          </div>
+
+          <div class="flex justify-between">
+            <span>Papers skimmed</span>
+            <span class="font-semibold text-purple-700" id="snap-skimmed">0</span>
+          </div>
+
+          <div class="flex justify-between">
+            <span>Papers unread</span>
+            <span class="font-semibold text-gray-700" id="snap-unread">0</span>
+          </div>
+
+          <hr class="my-2">
+
+          <div class="flex justify-between">
+            <span>Open tasks</span>
+            <span class="font-semibold text-gray-900" id="snap-tasks">0</span>
+          </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="mt-5">
+          <div class="text-xs text-gray-500 mb-1">
+            Reading progress
+          </div>
+          <div class="w-full h-2 bg-gray-200 rounded-full overflow-hidden">
+            <div
+              id="snap-progress"
+              class="h-full bg-green-500 transition-all duration-500"
+              style="width: 0%">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Papers -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-semibold text-purple-700 mb-4">
+          Papers
+        </h3>
+
+        <ul class="space-y-4 text-sm">
+          <li>
+            <div>
+              <button
+                class="paper-link text-left w-full hover:text-purple-600 font-medium text-gray-900"
+                data-paper="Ramachandra et al., 2016">
+                Attention Is All You Need
+              </button>
+              <p class="text-gray-600 mt-1 text-sm">
+                Transformer architecture based on self-attention
+              </p>
+            </div>
+
+            <div
+              class="reading-status flex gap-1"
+              data-paper="Ramachandra et al., 2016">
+
+              <button data-status="unread"
+                class="status-pill px-2 py-1 rounded-md border text-xs cursor-pointer transition">
+                Unread
+              </button>
+
+              <button data-status="skimmed"
+                class="status-pill px-2 py-1 rounded-md border text-xs cursor-pointer transition">
+                Skimmed
+              </button>
+
+              <button data-status="read"
+                class="status-pill px-2 py-1 rounded-md border text-xs cursor-pointer transition">
+                Read
+              </button>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              <button class="paper-link text-left w-full hover:text-purple-600 font-medium text-gray-900"  data-paper="Singh et al., 2023">
+                Why Do Larger Models Generalize Better?
+              </button>
+              <p class="text-gray-600 mt-1">
+                Explores why overparameterization improves generalization.
+              </p>
+            </div>
+            
+            <div
+              class="reading-status flex gap-1"
+              data-paper="Singh et al., 2023">
+
+              <button data-status="unread"
+                class="status-pill px-2 py-1 rounded-md border text-xs cursor-pointer transition">
+                Unread
+              </button>
+
+              <button data-status="skimmed"
+                class="status-pill px-2 py-1 rounded-md border text-xs cursor-pointer transition">
+                Skimmed
+              </button>
+
+              <button data-status="read"
+                class="status-pill px-2 py-1 rounded-md border text-xs cursor-pointer transition">
+                Read
+              </button>
+            </div>
+            </li>
+
+          <li>
+            <div>
+              <button class="paper-link text-left w-full hover:text-purple-600 font-medium text-gray-900"  data-paper="Jamwal et al., 2021">
+               The Lottery Ticket Hypothesis
+              </button>
+              <p class="text-gray-600 mt-1">
+                Sparse subnetworks exist inside dense neural networks.
+              </p>
+            </div>
+            
+            <div
+              class="reading-status flex gap-1"
+              data-paper="Jamwal et al., 2021">
+
+              <button data-status="unread"
+                class="status-pill px-2 py-1 rounded-md border text-xs cursor-pointer transition">
+                Unread
+              </button>
+
+              <button data-status="skimmed"
+                class="status-pill px-2 py-1 rounded-md border text-xs cursor-pointer transition">
+                Skimmed
+              </button>
+
+              <button data-status="read"
+                class="status-pill px-2 py-1 rounded-md border text-xs cursor-pointer transition">
+                Read
+              </button>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      
+      <!-- Deadlines -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-semibold text-purple-700 mb-4">
+          Deadlines
+        </h3>
+
+        <ul class="space-y-4 text-sm">
+          <li class="flex justify-between items-center">
+            <div>
+              <p class="font-medium text-gray-900">ICML Conference 2026</p>
+              <p class="text-gray-600">ARHF Paper submission</p>
+            </div>
+            <span class="px-2 py-1 rounded-full bg-purple-100 text-purple-700 text-xs">
+              10 Feb 2026
+            </span>
+          </li>
+
+          <li class="flex justify-between items-center">
+            <div>
+              <p class="font-medium text-gray-900">NuerIPS26</p>
+              <p class="text-gray-600">Conference Abstract ideas</p>
+            </div>
+            <span class="px-2 py-1 rounded-full bg-green-100 text-green-700 text-xs">
+              30 Feb 2026
+            </span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- To-do -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-semibold text-green-700 mb-4">
+          To-do
+        </h3>
+
+        <ul id="taskList" class="space-y-3 text-sm mb-4">
+          <li class="flex items-start gap-3">
+            <input type="checkbox" checked class="accent-green-600 mt-1">
+            <span class="line-through text-gray-500">
+              Review Thind et al.
+            </span>
+          </li>
+
+          <li class="flex items-start gap-3">
+            <input type="checkbox" class="accent-green-600 mt-1">
+            <span class="text-gray-800">
+              Mail Aarav about collaboration
+            </span>
+          </li>
+        </ul>
+
+        <div class="flex gap-2">
+          <input
+            id="newTaskInput"
+            type="text"
+            placeholder="Add a task"
+            class="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-green-500 focus:outline-none"
+          />
+          <button id="addTaskBtn"
+            class="text-sm font-medium text-green-700 hover:underline">
+            Add
+          </button>
+        </div>
+      </div>
+
+      
+      <!-- Notes -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 lg:col-span-2">
+        <h3 class="text-lg font-semibold text-green-700 mb-4">
+          Notes
+        </h3>
+
+        <textarea
+          id="notesArea"
+          class="w-full h-32 border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-green-500 focus:outline-none"
+          placeholder="Write notes, observations, questions…"
+        ></textarea>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-semibold text-purple-700 mb-4">
+          Quick Actions
+        </h3>
+
+        <div class="flex flex-col gap-3 text-sm">
+          <button
+            class="quick-action text-left hover:text-purple-600"
+            data-action="search">
+            Search new papers
+          </button>
+
+          <button
+            class="quick-action text-left hover:text-purple-600"
+            data-action="upload">
+            Upload a paper
+          </button>
+
+          <button
+            class="quick-action text-left hover:text-purple-600"
+            data-action="visualise">
+            Open visualisation
+          </button>
+        </div>
+      </div>
+
+      <!-- Open Questions -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-semibold text-purple-700 mb-4">
+          Open Questions
+        </h3>
+
+        <ul id="questionsList" class="space-y-2 text-sm text-gray-700 mb-4">
+          <li>• Why do RL models fail to perform better with more NNs?</li>
+          <li>• Since humans have they capability to learn, are they AI?</li>
+        </ul>
+
+        <div class="flex gap-2">
+          <input
+            id="newQuestion"
+            type="text"
+            placeholder="Add an open question"
+            class="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-purple-500 focus:outline-none"
+          />
+          <button
+            id="addQuestion"
+            class="text-sm font-medium text-purple-700 hover:underline">
+            Add
+          </button>
+        </div>
+      </div>
+
+
+      <!-- Export -->
+      <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6">
+        <h3 class="text-lg font-semibold text-green-700 mb-4">
+          Export
+        </h3>
+
+        <p class="text-sm text-gray-600 mb-4">
+          Download a structured snapshot of your current research state.
+        </p>
+
+        <button
+          id="exportMarkdown"
+          class="inline-flex items-center gap-2 text-sm font-medium text-green-700 hover:underline">
+          Export as Markdown
+        </button>
+      </div>
+
+
+    </div>
+  </div>
+  <div
+    id="actionContext"
+    class="mt-8 p-4 rounded-xl bg-white border border-gray-200 text-sm text-gray-700 hidden">
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='project.js') }}"></script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* -----------------------------
+     PAPER DATA
+  -------------------------------- */
+
+  const paperData = {
+    "Ramachandra et al., 2016": {
+      summary:
+        "Introduces the Transformer architecture, replacing recurrence and convolution with self-attention to model sequence dependencies efficiently and at scale. This design enables parallel computation, improved long-range dependency modeling, and forms the foundation of modern large language models.",
+      claims: [
+        "Self-attention alone is sufficient to model sequence-to-sequence tasks",
+        "Transformers outperform RNNs and CNNs on machine translation benchmarks",
+        "Parallelizable architectures scale better with data and compute",
+        "Attention mechanisms capture long-range dependencies more effectively"
+      ],
+      concepts: [
+        "Self-attention",
+        "Transformers",
+        "Sequence modeling",
+        "Representation learning",
+        "Scalability"
+      ]
+    },
+    "Singh et al., 2023": {
+      summary:
+        "Demonstrates that large, dense neural networks contain sparse subnetworks—\"winning tickets\"—that can be trained in isolation to match or exceed the performance of the full model when initialized correctly. This challenges assumptions about overparameterization and redundancy in deep learning.",
+      claims: [
+        "Dense networks contain sparse subnetworks capable of full performance",
+        "Initialization is critical to the success of winning tickets",
+        "Training sparse subnetworks from scratch outperforms pruning-after-training",
+        "Overparameterization aids optimization rather than representational necessity"
+      ],
+      concepts: [
+        "Network pruning",
+        "Overparameterization",
+        "Initialization",
+        "Optimization dynamics",
+        "Sparse neural networks"
+      ]
+    },
+    "Jamwal et al., 2021": {
+      summary:
+        "Investigates the counterintuitive phenomenon where increasing model size improves generalization even beyond the interpolation threshold. The paper connects overparameterization, double descent, and training dynamics to explain why larger models often generalize better in practice.",
+      claims: [
+        "Test error follows a double descent curve as model size increases",
+        "Overparameterized models can generalize despite perfect training accuracy",
+        "Optimization dynamics, not classical capacity control, dominate generalization",
+        "Larger models find flatter, more robust solutions"
+      ],
+      concepts: [
+        "Double descent",
+        "Generalization",
+        "Overparameterization",
+        "Implicit regularization",
+        "Optimization landscapes"
+      ]
+    }
+  };
+
+  /* =============================
+      RESEARCH SNAPSHOT
+    ============================= */
+
+    function updateSnapshot() {
+      const saved = JSON.parse(localStorage.getItem("readingStatus") || "{}");
+
+      let read = 0;
+      let skimmed = 0;
+      let unread = 0;
+
+      document.querySelectorAll(".reading-status").forEach(box => {
+        const paper = box.dataset.paper;
+        const status = saved[paper] || "unread";
+
+        if (status === "read") read++;
+        else if (status === "skimmed") skimmed++;
+        else unread++;
+      });
+
+      // Tasks
+      const openTasks =
+        document.querySelectorAll("#taskList input[type=checkbox]:not(:checked)")
+          .length;
+
+      // Update numbers
+      document.getElementById("snap-read").textContent = read;
+      document.getElementById("snap-skimmed").textContent = skimmed;
+      document.getElementById("snap-unread").textContent = unread;
+      document.getElementById("snap-tasks").textContent = openTasks;
+
+      // Progress bar
+      const total = read + skimmed + unread;
+      const progress = total === 0 ? 0 : Math.round((read / total) * 100);
+      document.getElementById("snap-progress").style.width = progress + "%";
+    }
+
+
+  /* -----------------------------
+      READING STATUS (PILLS)
+    -------------------------------- */
+
+    const STATUS_KEY = "readingStatus";
+
+    function applyStatus(container, status) {
+      container.querySelectorAll(".status-pill").forEach(btn => {
+        // Reset everything
+        btn.className =
+          "status-pill px-2 py-1 rounded-md border text-xs transition";
+
+        btn.classList.add("border-gray-300", "text-gray-600", "hover:bg-gray-50");
+      });
+
+      const active = container.querySelector(`[data-status="${status}"]`);
+      if (!active) return;
+
+      // Remove hover on active
+      active.classList.remove("hover:bg-gray-50");
+
+      if (status === "unread") {
+        active.classList.add(
+          "bg-gray-100",
+          "border-gray-300",
+          "text-gray-800",
+          "font-semibold"
+        );
+      }
+
+      if (status === "skimmed") {
+        active.classList.add(
+          "bg-purple-100",
+          "border-purple-300",
+          "text-purple-700",
+          "font-semibold"
+        );
+      }
+
+      if (status === "read") {
+        active.classList.add(
+          "bg-green-100",
+          "border-green-300",
+          "text-green-700",
+          "font-semibold"
+        );
+      }
+    }
+
+
+    function saveReadingStatus() {
+      const data = {};
+
+      document.querySelectorAll(".reading-status").forEach(box => {
+        const paper = box.dataset.paper;
+        const status = box.dataset.current || "unread";
+        data[paper] = status;
+      });
+
+      localStorage.setItem("readingStatus", JSON.stringify(data));
+      updateSnapshot();
+    }
+
+    function loadReadingStatus() {
+      const saved = JSON.parse(localStorage.getItem("readingStatus") || "{}");
+
+      document.querySelectorAll(".reading-status").forEach(box => {
+        const paper = box.dataset.paper;
+
+        // Explicit default
+        const status = saved[paper] ? saved[paper] : "unread";
+
+        // Set state explicitly
+        box.dataset.current = status;
+        applyStatus(box, status);
+      });
+    }
+
+    // Click handling (event delegation, bulletproof)
+    document.addEventListener("click", e => {
+      const btn = e.target.closest(".status-pill");
+      if (!btn) return;
+
+      const box = btn.closest(".reading-status");
+      const status = btn.dataset.status;
+
+      box.dataset.current = status;
+      applyStatus(box, status);
+      saveReadingStatus();
+      updateSnapshot();
+    });
+
+    // Init on load
+    loadReadingStatus();
+
+
+
+  /* -----------------------------
+     MODAL SETUP
+  -------------------------------- */
+
+  const modal = document.createElement("div");
+  modal.innerHTML = `
+    <div id="paperModal" class="fixed inset-0 z-50 hidden">
+      <div class="absolute inset-0 bg-black/40" id="closeOverlay"></div>
+      <div class="relative bg-white max-w-xl mx-auto mt-24 rounded-2xl shadow-xl p-6">
+        <h3 id="modalTitle" class="text-xl font-semibold"></h3>
+        <p id="modalSummary" class="mt-3 text-sm text-gray-700"></p>
+
+        <div class="mt-4">
+          <p class="font-semibold text-sm">Key claims</p>
+          <ul id="modalClaims" class="list-disc list-inside text-sm mt-1"></ul>
+        </div>
+
+        <div class="mt-4">
+          <p class="font-semibold text-sm">Concepts</p>
+          <div id="modalConcepts" class="flex flex-wrap gap-2 mt-1"></div>
+        </div>
+
+        <button id="closeBtn" class="mt-6 text-sm text-purple-700 hover:underline">
+          Close
+        </button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  function openPaper(title) {
+    const data = paperData[title];
+    if (!data) return;
+
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalSummary").textContent = data.summary;
+
+    const claims = document.getElementById("modalClaims");
+    claims.innerHTML = "";
+    data.claims.forEach(c => {
+      const li = document.createElement("li");
+      li.textContent = c;
+      claims.appendChild(li);
+    });
+
+    const concepts = document.getElementById("modalConcepts");
+    concepts.innerHTML = "";
+    data.concepts.forEach(c => {
+      const tag = document.createElement("span");
+      tag.className = "px-2 py-1 bg-purple-100 text-purple-700 text-xs rounded-full";
+      tag.textContent = c;
+      concepts.appendChild(tag);
+    });
+
+    document.getElementById("paperModal").classList.remove("hidden");
+  }
+
+  document.querySelectorAll(".paper-link").forEach(btn => {
+    btn.addEventListener("click", () => {
+      openPaper(btn.dataset.paper);
+    });
+  });
+
+  document.getElementById("closeBtn").onclick =
+  document.getElementById("closeOverlay").onclick = () =>
+    document.getElementById("paperModal").classList.add("hidden");
+
+  /* -----------------------------
+     LIST (FIXED)
+  -------------------------------- */
+
+  const taskList = document.getElementById("taskList");
+  const input = document.getElementById("newTaskInput");
+
+  function normalizeTasks() {
+    taskList.querySelectorAll("li").forEach(li => {
+      const cb = li.querySelector("input[type=checkbox]");
+      const span = li.querySelector("span");
+
+      if (cb.checked) {
+        span.classList.add("line-through", "text-gray-400");
+        span.classList.remove("text-gray-800");
+      } else {
+        span.classList.remove("line-through", "text-gray-400");
+        span.classList.add("text-gray-800");
+      }
+    });
+  }
+
+
+  function saveTasks() {
+    taskList.querySelectorAll("input[type=checkbox]").forEach(cb => {
+      if (cb.checked) {
+        cb.setAttribute("checked", "");
+      } else {
+        cb.removeAttribute("checked");
+      }
+    });
+
+    localStorage.setItem("tasks", taskList.innerHTML);
+  }
+
+
+  function loadTasks() {
+    const saved = localStorage.getItem("tasks");
+    if (!saved) return;
+
+    taskList.innerHTML = saved;
+
+    // 🔑 Re-sync checkbox states and visuals
+    taskList.querySelectorAll("li").forEach(li => {
+      const cb = li.querySelector("input[type=checkbox]");
+      const span = li.querySelector("span");
+
+      // Force boolean state from attribute
+      cb.checked = cb.hasAttribute("checked");
+
+      span.classList.toggle("line-through", cb.checked);
+      span.classList.toggle("text-gray-400", cb.checked);
+      span.classList.toggle("text-gray-800", !cb.checked);
+    });
+  }
+
+  loadTasks();
+
+  taskList.addEventListener("change", e => {
+    if (e.target.type === "checkbox") {
+      normalizeTasks();
+      saveTasks();
+      updateSnapshot();
+    }
+  });
+
+  function addTask() {
+    const value = input.value.trim();
+    if (!value) return;
+
+    const li = document.createElement("li");
+    li.className = "flex items-start gap-3";
+    li.innerHTML = `
+      <input type="checkbox" class="accent-green-600 mt-1">
+      <span class="text-gray-800">${value}</span>
+    `;
+    taskList.appendChild(li);
+    input.value = "";
+    saveTasks();
+    updateSnapshot();
+  }
+
+  const addTaskBtn = document.getElementById("addTaskBtn");
+  if (addTaskBtn) {
+    addTaskBtn.addEventListener("click", addTask);
+  }
+
+  input.addEventListener("keydown", e => {
+    if (e.key === "Enter") addTask();
+  });
+
+  /* -----------------------------
+     NOTES (PERSISTENT)
+  -------------------------------- */
+
+  const notes = document.getElementById("notesArea");
+  if (notes) {
+    notes.value = localStorage.getItem("notes") || "";
+    notes.addEventListener("input", () =>
+      localStorage.setItem("notes", notes.value)
+    );
+  }
+
+  /* -----------------------------
+     DEADLINES (REAL DATES)
+  -------------------------------- */
+
+  document.querySelectorAll(".deadline-tag").forEach(tag => {
+    const target = new Date(tag.dataset.date);
+    const now = new Date();
+    const days = Math.ceil((target - now) / 86400000);
+
+    if (days < 30) {
+      tag.classList.add("bg-red-100", "text-red-700");
+    } else {
+      tag.classList.add("bg-green-100", "text-green-700");
+    }
+
+    tag.title = `${days} days remaining`;
+  });
+
+  /* =============================
+      OPEN QUESTIONS
+    ============================= */
+
+    const QUESTIONS_KEY = "openQuestions";
+    const questionsList = document.getElementById("questionsList");
+    const questionInput = document.getElementById("newQuestion");
+
+    function loadQuestions() {
+      const saved = JSON.parse(localStorage.getItem(QUESTIONS_KEY) || "[]");
+      questionsList.innerHTML = "";
+      saved.forEach(q => {
+        const li = document.createElement("li");
+        li.textContent = "• " + q;
+        questionsList.appendChild(li);
+      });
+    }
+
+    function saveQuestions() {
+      const qs = [];
+      questionsList.querySelectorAll("li").forEach(li => {
+        qs.push(li.textContent.replace(/^•\s*/, ""));
+      });
+      localStorage.setItem(QUESTIONS_KEY, JSON.stringify(qs));
+      updateSnapshot(); // optional but nice
+    }
+
+    document.getElementById("addQuestion")?.addEventListener("click", () => {
+      const value = questionInput.value.trim();
+      if (!value) return;
+
+      const li = document.createElement("li");
+      li.textContent = "• " + value;
+      questionsList.appendChild(li);
+
+      questionInput.value = "";
+      saveQuestions();
+    });
+
+    questionInput?.addEventListener("keydown", e => {
+      if (e.key === "Enter") {
+        document.getElementById("addQuestion").click();
+      }
+    });
+
+    loadQuestions();
+
+
+  /* -----------------------------
+     QUICK ACTIONS
+  -------------------------------- */
+
+  document.addEventListener("click", e => {
+    const btn = e.target.closest("button[data-action]");
+    if (!btn) return;
+
+    // Deactivate all
+    document.querySelectorAll("button[data-action]").forEach(b => {
+      b.classList.remove("bg-purple-50", "text-purple-700", "font-semibold");
+    });
+
+    // Activate selected
+    btn.classList.add("bg-purple-50", "text-purple-700", "font-semibold");
+
+    const action = btn.dataset.action;
+
+    // Optional: show context feedback
+    showActionContext(action);
+  });
+
+  /* =============================
+      EXPORT (MARKDOWN)
+    ============================= */
+
+    document.getElementById("exportMarkdown")?.addEventListener("click", () => {
+      const reading = JSON.parse(localStorage.getItem("readingStatus") || "{}");
+      const tasksHTML = localStorage.getItem("tasks") || "";
+      const notes = localStorage.getItem("notes") || "";
+
+      let md = `# Research Summary\n\n`;
+      md += `_Exported on ${new Date().toLocaleString()}_\n\n`;
+
+      /* -------- Papers -------- */
+      md += `## Papers\n`;
+      Object.entries(reading).forEach(([paper, status]) => {
+        md += `- **${paper}** — ${status}\n`;
+      });
+
+      if (Object.keys(reading).length === 0) {
+        md += `- _No papers tracked._\n`;
+      }
+
+      /* -------- Tasks -------- */
+      md += `\n## Tasks\n`;
+      if (tasksHTML.trim()) {
+        const temp = document.createElement("div");
+        temp.innerHTML = tasksHTML;
+
+        temp.querySelectorAll("li").forEach(li => {
+          const checked = li.querySelector("input")?.checked;
+          const text = li.textContent.trim();
+          md += `- [${checked ? "x" : " "}] ${text}\n`;
+        });
+      } else {
+        md += `- _No tasks._\n`;
+      }
+
+      /* -------- Notes -------- */
+      md += `\n## Notes\n`;
+      if (notes.trim()) {
+        notes.split("\n").forEach(line => {
+          md += `- ${line}\n`;
+        });
+      } else {
+        md += `_No notes._\n`;
+      }
+
+      /* -------- Download -------- */
+      const blob = new Blob([md], { type: "text/markdown" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "research-summary.md";
+      a.click();
+
+      URL.revokeObjectURL(url);
+    });
+
+
+function showActionContext(action) {
+  const box = document.getElementById("actionContext");
+  box.classList.remove("hidden");
+
+  if (action === "search") {
+    box.innerHTML = `
+      <b>Search mode</b><br/>
+      Explore recent papers by keywords, authors, or concepts.
+    `;
+  }
+
+  if (action === "upload") {
+    box.innerHTML = `
+      <b>Upload mode</b><br/>
+      Add a PDF to extract claims, evidence, and references.
+    `;
+  }
+
+  if (action === "visualise") {
+    box.innerHTML = `
+      <b>Visualisation mode</b><br/>
+      Map how claims and evidence connect across papers.
+    `;
+  }
+}
+
+updateSnapshot();
+
+});
+</script>
+
+{% endblock %}

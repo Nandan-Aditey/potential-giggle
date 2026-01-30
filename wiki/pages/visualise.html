@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+  
+{% block title %}Visualise{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='drylab.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='pond.css') }}">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .container {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+</style>
+{% endblock %}
+
+{% block page_content %}
+
+<!-- Hero Section -->
+    <section id="intro" class="relative flex items-center justify-center">
+      <div class="absolute inset-0">
+        <!-- <img src="https://static.igem.wiki/teams/6006/wiki/hplanding/hp-bg.avif" class="w-full h-full object-cover"/> -->
+        <img src="{{ url_for('static', filename='visualize-3.avif') }}" class="w-full h-full object-cover"/>
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-800/70 via-green-900/60 to-black/60"></div>
+      </div>
+      <div class="relative text-center px-6">
+        <h2 class="text-4xl md:text-5xl font-extrabold text-white drop-shadow-lg">Visualize</h2>
+        <p class="mt-4 text-lg text-gray-200 max-w-2xl mx-auto">
+            Learn through interactive models and animations to understand research concepts and our project workflow.
+          </p>
+      </div>
+      <div class="absolute bottom-10 left-1/2 -translate-x-1/2">
+          <div class="w-6 h-6 border-b-2 border-r-2 border-white transform rotate-45 animate-bounce opacity-75"></div>
+      </div>
+    </section>
+
+
+    <section class="max-w-5xl mx-auto px-6 mt-32 mb-20 text-center">
+  <h2 class="text-4xl md:text-5xl font-semibold tracking-tight text-slate-900 mb-8">
+    Interactive Scientific Visualisation
+  </h2>
+
+  <p class="text-slate-600 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+    SCIREL goes beyond static explanations by turning complex scientific processes
+    into interactive, explorable systems. Instead of reading about environmental
+    dynamics in isolation, you can
+    <span class="font-medium text-slate-800">see them unfold</span>
+    and directly manipulate the variables that shape them.
+  </p>
+
+  <div class="mt-8 flex justify-center">
+    <span class="h-px w-24 bg-gradient-to-r from-green-500 to-purple-500"></span>
+  </div>
+
+  <p class="mt-8 text-slate-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+    The demonstration below visualises nitrate leaching and eutrophication in a
+    simplified pond ecosystem. Rotate the scene, interact with different regions,
+    and observe how biological and chemical factors evolve over time.
+  </p>
+</section>
+
+
+
+    
+  <div id="interactive-pond-demo">
+    <div id="renderContainer"></div>
+    <div class="panel" id="controls">
+      <h2>Interactive Pond - Working Demo</h2>
+      <p>Rotate the scene. Hover to highlight regions. Click to show info.</p>
+      <div class="row">
+        <label for="timescale">Timeline</label>
+        <input id="timescale" type="range" min="0" max="1" step="0.01" value="0" />
+      </div>
+      <div class="row" style="margin-top: 8px">
+        <button id="resetBtn" class="btn">Reset View</button>
+        <div style="flex: 1"></div>
+        <button id="createBacteria" class="btn">Create Bacteria</button>
+      </div>
+      <p style="margin-top: 10px; font-size: 12px; color: var(--muted)">Click parts to read about nitrate leaching and algal blooms.</p>
+    </div>
+    <div id="infoBox" aria-live="polite"></div>
+    <div class="legend" aria-hidden="false">
+      <div class="item">
+        <span class="sw" style="background: #4fc3f7"></span>Water
+      </div>
+      <div class="item">
+        <span class="sw" style="background: #85532d"></span>Soil
+      </div>
+      <div class="item">
+        <span class="sw" style="background: #6fcf97"></span>Algae
+      </div>
+      <div class="item">
+        <span class="sw">
+          <img class="legend-icon" src="https://static.igem.wiki/teams/6006/gallery/wetlab/pond/bacteria.avif" alt="Bacteria">
+        </span>Bacteria
+      </div>
+      <div class="item">
+        <span class="sw">
+          <img class="legend-icon" src="https://static.igem.wiki/teams/6006/gallery/wetlab/pond/ammonium.avif" alt="Ammonium Ion">
+        </span>Ammonium
+      </div>
+      <div class="item">
+        <span class="sw">
+          <img class="legend-icon" src="https://static.igem.wiki/teams/6006/gallery/wetlab/pond/nitrate.avif" alt="Nitrate Ion">
+        </span>Nitrate
+      </div>
+    </div>
+  </div>
+
+  <div class="narrative-box-info">
+    <p>
+      This interactive model represents a pond environment under stress. Initially, you can observe how nitrates continuously leach into the water, causing eutrophication that leads to massive algal blooms and the death of fish populations, simply <strong>drag the timeline</strong> to see this progression.
+    </p>
+    <p>
+      To intervene, click <strong>"Reset View"</strong> then <strong>"Create Bacteria."</strong> This deploys our engineered <em>Pseudomonas putida</em>, which activates the <strong>DNRA pathway</strong>. By converting leachable nitrates into stable ammonium, the bacteria ensure nitrogen binds to the soil instead of polluting the water, restoring ecosystem health and aiding plant growth.
+    </p>
+  </div>
+
+  
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='three/three.min.js') }}" defer></script>
+<script src="{{ url_for('static', filename='three/addons/OrbitControls.js') }}" defer></script>
+<script src="{{ url_for('static', filename='three/addons/SimplexNoise.js') }}" defer></script>
+<script src="{{ url_for('static', filename='pond.js') }}" defer></script>
+{% endblock %}

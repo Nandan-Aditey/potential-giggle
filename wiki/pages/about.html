@@ -1,0 +1,165 @@
+{% extends "layout.html" %}
+
+{% block title %}About Us{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='awards.css') }}">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  .container {
+    max-width: none !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+</style>
+{% endblock %}
+
+{% block page_content %}
+
+<!-- ABOUT US SECTION -->
+<section class="max-w-6xl mx-auto px-6 py-24">
+
+  <!-- Header -->
+  <div class="text-center mb-16">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-slate-900">
+      About Us
+    </h1>
+    <p class="mt-6 text-lg text-slate-600 max-w-3xl mx-auto">
+      We build tools that make research more discoverable, connected, and understandable without hiding knowledge behind paywalls.
+    </p>
+  </div>
+
+  <!-- Mission -->
+  <div class="grid md:grid-cols-2 gap-12 items-start mb-20">
+    <div>
+      <h2 class="text-2xl font-semibold text-slate-900 mb-4">
+        Our Mission
+      </h2>
+      <p class="text-slate-600 leading-relaxed">
+        Academic research is fragmented across papers, fields, and decades.
+        Our mission is to organize knowledge into intuitive, interactive structures
+        that help researchers, students, and curious minds explore ideas rather than
+        just documents.
+      </p>
+      <p class="mt-4 text-slate-600 leading-relaxed">
+        We believe understanding emerges from connections between papers,
+        methods, theories, and results.
+      </p>
+    </div>
+
+    <div class="bg-slate-50 rounded-2xl p-8 border border-slate-200">
+      <h3 class="text-lg font-semibold text-slate-800 mb-3">
+        Core Principles
+      </h3>
+      <ul class="space-y-3 text-slate-600">
+        <li>• Research focused</li>
+        <li>• Visual clarity over complexity</li>
+        <li>• Tooling that respects academic rigor</li>
+        <li>• Open access and transparency</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Differentiation -->
+  <div class="mb-20">
+    <h2 class="text-2xl font-semibold text-slate-900 mb-8 text-center">
+      How We Are Different
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <h3 class="font-semibold text-slate-900 mb-3">
+          Graph-Based Understanding
+        </h3>
+        <p class="text-slate-600">
+          Instead of static lists or feeds, we represent research as an interconnected
+          graph making relationships, influences, and clusters immediately visible.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <h3 class="font-semibold text-slate-900 mb-3">
+          Human-Readable Summaries
+        </h3>
+        <p class="text-slate-600">
+          Every paper is distilled into structured, readable explanations that focus
+          on ideas, assumptions, and implications. We prevent you from wasting time going through hundreds of papers just to figure out the solution doesn't work.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl border border-slate-200 bg-white shadow-sm">
+        <h3 class="font-semibold text-slate-900 mb-3">
+          No Paywalls, No Lock-In
+        </h3>
+        <p class="text-slate-600">
+          We are fully open-source and do not monetize access to knowledge.
+          Your learning is never gated behind subscriptions.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <section class="quote-section">
+    <div class="quote-container">
+      <div class="quote-text">
+        <p>
+          "<em>I am now the most productive mathematician of the 21<sup>st</sup> century, till AI replaces me of course</em>"
+        </p>
+        <p class="quote-author">
+          – Dr. Dhrubo Reddy, user of our tools and unemployed researcher
+        </p>
+      </div>
+      <div class="quote-image">
+        <img src="{{ url_for('static', filename='dhruva.jpeg') }}" alt="Dr Dhrubo Reddy">
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Source -->
+  <div class="bg-slate-900 rounded-3xl p-12 text-white mb-20">
+    <h2 class="text-2xl font-semibold mb-4">
+      Open Source & Community-Driven
+    </h2>
+    <p class="text-slate-300 max-w-3xl leading-relaxed">
+      This project is free, open-source, and built for the community.
+      We do not sell data, run ads, or prioritize growth over integrity.
+      Contributions, feedback, and forks are welcome — the platform improves
+      as the community grows.
+    </p>
+  </div>
+
+  <!-- Support Section -->
+  <div class="text-center max-w-3xl mx-auto">
+    <h2 class="text-2xl font-semibold text-slate-900 mb-4">
+      Support Us
+    </h2>
+    <p class="text-slate-600 mb-8">
+      If you find value in open research tools, consider supporting
+      organizations that keep knowledge freely accessible for everyone.
+      We encourage contributing to one of the world’s most
+      important open knowledge projects.
+    </p>
+
+    <a
+      href="https://donate.wikimedia.org/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center px-8 py-4 rounded-xl
+             bg-slate-900 text-white font-semibold
+             hover:bg-slate-800 transition"
+    >
+      Pay for a broke student's maggi
+    </a>
+  </div>
+
+</section>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script src="{{ url_for('static', filename='awards.js') }}"></script>
+{% endblock %}
