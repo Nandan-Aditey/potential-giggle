@@ -1,0 +1,108 @@
+:root {
+            --primary-color: #4f46e5;
+            --secondary-color: #22c55e;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --bg-light: #f8fafc;
+            --bg-white: #ffffff;
+            --border-color: #e2e8f0;
+        }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- Header --- */
+        .post-header {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-color: var(--bg-white);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .post-header h1 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin: 0;
+        }
+        .post-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+
+        /* --- Article Content --- */
+        .article-content {
+            padding: 3rem 0;
+        }
+        .article-content h2 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+        .article-content p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+        .article-content blockquote {
+            margin: 2rem 0;
+            padding-left: 1.5rem;
+            border-left: 4px solid var(--secondary-color);
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--text-dark);
+        }
+
+        /* --- Image with Caption --- */
+        .image-with-caption {
+            margin: 2.5rem 0;
+            background-color: var(--bg-white);
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07);
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        .image-with-caption img {
+            width: 100%;
+            display: block;
+        }
+        .image-with-caption figcaption {
+            padding: 1rem 1.25rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            text-align: center;
+            background-color: #f9fafb;
+        }
+
+        /* --- Callout Box for Takeaways --- */
+        .callout {
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--primary-color);
+            background-color: #eef2ff;
+            color: #3730a3;
+        }
+        .callout h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem;
+            color: #312e81;
+        }
+        .callout ul {
+            padding-left: 1.25rem;
+            margin: 0;
+        }
+        .callout li {
+            margin-bottom: 0.5rem;
+        }
