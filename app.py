@@ -2,7 +2,7 @@ from os import path
 from pathlib import Path
 import os
 
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, abort
 from flask_frozen import Freezer
 
 
@@ -37,7 +37,10 @@ def favicon():
 
 @app.route('/<page>')
 def pages(page):
-    return render_template(str(Path('pages')) + '/' + page.lower() + '.html')
+    template = Path('pages') / f"{page.lower()}.html"
+    if not template.exists():
+        abort(404)
+    return render_template(str(template))
 
 
 @app.route("/genbank")
@@ -50,6 +53,15 @@ def genbank_viewer():
         format=format
     )
 
+
+@freezer.register_generator
+def frozen_pages():
+    yield {"page": "dashboard"}
+    yield {"page": "search"}
+    yield {"page": "understand"}
+    yield {"page": "visualise"}
+    yield {"page": "research-map"}
+    yield {"page": "about"}
 
 # Main Function, Runs at http://0.0.0.0:8081
 if __name__ == "__main__":
